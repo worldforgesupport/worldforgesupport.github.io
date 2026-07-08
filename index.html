@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ── Tokens — exactamente los mismos que usa la app ── */
+/* ── Tokens idénticos a styles.css de la app ── */
 :root {
   --bg:      #f5f4f1;
   --bg2:     #ffffff;
@@ -22,14 +22,14 @@
   --border:  #e2e0ef;
   --sidebar: #1a1832;
   --r:       12px;
-  --serif:   'Playfair Display', serif;
+  --serif:   'Playfair Display', Georgia, serif;
   --sans:    'Inter', system-ui, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme=light]) {
-    --bg:#0f0e1a; --bg2:#1a1832; --bg3:#221f38;
-    --accent:#7c88d4; --accent-h:#9b83da;
-    --text:#eceaf8; --text2:#b0adc8; --muted:#8c89a8; --border:#2d2a4a;
+    --bg:#0f0e1a;--bg2:#1a1832;--bg3:#221f38;
+    --accent:#7c88d4;--accent-h:#9b83da;
+    --text:#eceaf8;--text2:#b0adc8;--muted:#8c89a8;--border:#2d2a4a;
   }
 }
 :root[data-theme=dark]{--bg:#0f0e1a;--bg2:#1a1832;--bg3:#221f38;--accent:#7c88d4;--accent-h:#9b83da;--text:#eceaf8;--text2:#b0adc8;--muted:#8c89a8;--border:#2d2a4a}
@@ -43,38 +43,23 @@ a{color:var(--accent);text-decoration:none}
 a:hover{color:var(--accent-h)}
 .container{max-width:1080px;margin:0 auto;padding:0 24px}
 
-/* ── NAV — siempre oscuro (como el sidebar de la app) ── */
-nav{
-  background: var(--sidebar);
-  border-bottom: 1px solid rgba(255,255,255,.06);
-  padding: 14px 0;
-  position: sticky; top: 0; z-index: 100;
-}
+/* ── NAV — fondo oscuro igual al sidebar de la app ── */
+nav{background:var(--sidebar);border-bottom:1px solid rgba(255,255,255,.06);padding:14px 0;position:sticky;top:0;z-index:100}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1080px;margin:0 auto;padding:0 24px;gap:16px}
-.nav-logo{display:flex;align-items:center;gap:10px;color:#fff;font-family:var(--sans);font-size:1.05rem;font-weight:700;letter-spacing:.03em}
-.nav-logo img{width:32px;height:32px;border-radius:7px;display:block}
-.nav-logo .logo-icon{width:32px;height:32px;border-radius:7px;flex-shrink:0;display:block}
+.nav-logo{display:flex;align-items:center;gap:10px;color:#fff;font-family:var(--sans);font-size:1.05rem;font-weight:700;letter-spacing:.03em;text-decoration:none}
+.wf-icon{width:32px;height:32px;flex-shrink:0;display:block}
 .nav-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .btn-nav{color:rgba(255,255,255,.6);font-size:.85rem;font-weight:500;padding:7px 14px;border-radius:7px;border:1px solid rgba(255,255,255,.1);transition:all .15s;text-decoration:none}
 .btn-nav:hover{color:#fff;border-color:rgba(255,255,255,.25)}
 .btn-primary{background:var(--accent);color:#fff;font-weight:600;font-size:.875rem;padding:9px 20px;border-radius:7px;border:none;cursor:pointer;transition:background .15s;text-decoration:none;display:inline-flex;align-items:center;gap:6px;line-height:1}
 .btn-primary:hover{background:var(--accent-h);color:#fff}
-@media(max-width:620px){.btn-nav:not(.show-mobile){display:none}}
+@media(max-width:620px){.btn-nav.hide-mobile{display:none}}
 
 /* ── HERO ── */
 .hero{padding:88px 0 76px;border-bottom:1px solid var(--border)}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:22px}
-.hero-layout{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
-.hero h1{
-  font-family:var(--serif);
-  font-size:clamp(2.6rem,6.5vw,4.8rem);
-  font-weight:900;
-  line-height:1.06;
-  letter-spacing:-.03em;
-  color:var(--text);
-  margin-bottom:22px;
-  text-wrap:balance;
-}
+.hero-layout{display:grid;grid-template-columns:1fr 200px;gap:56px;align-items:center}
+.hero h1{font-family:var(--serif);font-size:clamp(2.6rem,6.5vw,4.8rem);font-weight:900;line-height:1.06;letter-spacing:-.03em;color:var(--text);margin-bottom:22px;text-wrap:balance}
 .hero h1 em{font-style:italic;color:var(--accent)}
 .hero-sub{font-size:1.08rem;color:var(--text2);max-width:520px;line-height:1.7;margin-bottom:38px}
 .hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:26px}
@@ -83,9 +68,9 @@ nav{
 .btn-outline:hover{color:var(--text);border-color:var(--muted)}
 .hero-footnote{font-size:.78rem;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
 .hero-footnote span::before{content:'✓ ';color:var(--accent);font-weight:700}
-.hero-logo{width:200px;flex-shrink:0}
-.hero-logo img,.hero-logo svg{width:100%;height:auto;opacity:.92}
-@media(max-width:760px){.hero-layout{grid-template-columns:1fr}.hero-logo{display:none}}
+.hero-logo-wrap{display:flex;align-items:center;justify-content:center}
+.hero-logo-wrap .wf-icon-lg{width:160px;height:160px;display:block}
+@media(max-width:780px){.hero-layout{grid-template-columns:1fr}.hero-logo-wrap{display:none}}
 
 /* ── SECTIONS ── */
 .section{padding:80px 0;border-bottom:1px solid var(--border)}
@@ -131,10 +116,10 @@ nav{
 /* ── FOOTER ── */
 footer{background:var(--sidebar);padding:32px 0}
 .footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;max-width:1080px;margin:0 auto;padding:0 24px}
-.footer-logo{display:flex;align-items:center;gap:9px;color:rgba(255,255,255,.5);font-size:.84rem}
-.footer-logo img,.footer-logo .logo-icon{width:22px;height:22px;border-radius:5px;opacity:.7}
+.footer-logo{display:flex;align-items:center;gap:9px;color:rgba(255,255,255,.45);font-size:.84rem;text-decoration:none}
+.footer-logo .wf-icon{width:22px;height:22px;opacity:.65}
 .footer-links{display:flex;gap:20px;flex-wrap:wrap}
-.footer-links a{font-size:.82rem;color:rgba(255,255,255,.45)}
+.footer-links a{font-size:.82rem;color:rgba(255,255,255,.45);text-decoration:none}
 .footer-links a:hover{color:#fff}
 </style>
 </head>
@@ -144,28 +129,26 @@ footer{background:var(--sidebar);padding:32px 0}
 <nav>
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <!-- Logo PNG (GitHub Pages) — en el Artifact se muestra el SVG inline -->
-      <img src="assets/logo.png" class="logo-icon" alt="WorldForge logo"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-      <!-- SVG fallback / Artifact -->
-      <svg class="logo-icon" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" style="display:none">
+      <!-- SVG por defecto; JS lo reemplaza con el PNG si está disponible -->
+      <svg class="wf-icon logo-svg" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
         <rect width="36" height="36" rx="7" fill="#5c6bc0"/>
         <path d="M5,18 Q5,5 18,5 Q31,5 31,18 Z" fill="white"/>
-        <ellipse cx="13" cy="12" rx="4" ry="5.5" fill="#5c6bc0" opacity="0.7"/>
-        <ellipse cx="23.5" cy="13" rx="3.5" ry="4.5" fill="#5c6bc0" opacity="0.7"/>
-        <line x1="5" y1="18" x2="31" y2="18" stroke="#5c6bc0" stroke-width="0.7" opacity="0.4"/>
-        <path d="M4,20 L32,20 L28.5,26 L7.5,26 Z" fill="white"/>
-        <path d="M4,20 Q1,21 2.5,25 L7.5,26 Z" fill="white"/>
-        <rect x="14" y="26" width="8" height="5.5" rx="1" fill="white"/>
-        <rect x="10" y="31.5" width="16" height="3.5" rx="1.5" fill="white"/>
+        <ellipse cx="12.5" cy="11.5" rx="4" ry="5.5" fill="#5c6bc0" opacity="0.65"/>
+        <ellipse cx="23" cy="12.5" rx="3.5" ry="4.5" fill="#5c6bc0" opacity="0.65"/>
+        <line x1="5" y1="18" x2="31" y2="18" stroke="rgba(255,255,255,.35)" stroke-width="0.8"/>
+        <path d="M3.5,20.5 L32.5,20.5 L29,26.5 L7,26.5 Z" fill="white"/>
+        <path d="M3.5,20.5 Q0.5,21.5 2,25 L7,26.5 Z" fill="white"/>
+        <rect x="13.5" y="26.5" width="9" height="5.5" rx="1" fill="white"/>
+        <rect x="9.5" y="32" width="17" height="3.5" rx="1.5" fill="white"/>
       </svg>
+      <img class="wf-icon logo-png" src="assets/logo.png" alt="WorldForge" style="display:none;border-radius:7px">
       WorldForge
     </a>
     <div class="nav-links">
-      <a href="#features" class="btn-nav">Características</a>
-      <a href="#planes" class="btn-nav">Planes</a>
-      <a href="#changelog" class="btn-nav">Versiones</a>
-      <a href="https://github.com/worldforgesupport/worldforge/releases/download/v1.0.0/WorldForgeSetup-1.0.0.exe" class="btn-primary show-mobile">
+      <a href="#features" class="btn-nav hide-mobile">Características</a>
+      <a href="#planes" class="btn-nav hide-mobile">Planes</a>
+      <a href="#changelog" class="btn-nav hide-mobile">Versiones</a>
+      <a href="https://github.com/worldforgesupport/worldforge/releases/download/v1.0.0/WorldForgeSetup-1.0.0.exe" class="btn-primary">
         ⬇ Descargar
       </a>
     </div>
@@ -199,21 +182,21 @@ footer{background:var(--sidebar);padding:32px 0}
           <span>v1.0.0</span>
         </div>
       </div>
-      <div class="hero-logo">
-        <img src="assets/logo.png" alt="WorldForge"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-        <!-- SVG fallback for Artifact -->
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="display:none;width:100%;height:auto">
+      <div class="hero-logo-wrap">
+        <!-- SVG hero logo por defecto -->
+        <svg class="wf-icon-lg logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
           <rect width="200" height="200" rx="36" fill="#f0eff9"/>
-          <path d="M24,100 Q24,28 100,28 Q176,28 176,100 Z" fill="#1a1832"/>
-          <ellipse cx="73" cy="62" rx="22" ry="28" fill="#f0eff9" opacity="0.65"/>
-          <ellipse cx="130" cy="68" rx="18" ry="22" fill="#f0eff9" opacity="0.65"/>
-          <line x1="24" y1="100" x2="176" y2="100" stroke="#f0eff9" stroke-width="3" opacity="0.4"/>
-          <path d="M18,110 L182,110 L170,132 L30,132 Z" fill="#1a1832"/>
-          <path d="M18,110 Q8,112 12,128 L30,132 Z" fill="#1a1832"/>
-          <rect x="78" y="132" width="44" height="28" rx="4" fill="#1a1832"/>
-          <rect x="58" y="160" width="84" height="18" rx="6" fill="#1a1832"/>
+          <rect width="200" height="200" rx="36" fill="color-mix(in srgb,#5c6bc0 8%,transparent)"/>
+          <path d="M22,100 Q22,28 100,28 Q178,28 178,100 Z" fill="#1a1832"/>
+          <ellipse cx="72" cy="62" rx="23" ry="29" fill="#f0eff9" opacity="0.6"/>
+          <ellipse cx="130" cy="67" rx="19" ry="23" fill="#f0eff9" opacity="0.6"/>
+          <line x1="22" y1="100" x2="178" y2="100" stroke="rgba(240,239,249,.35)" stroke-width="3"/>
+          <path d="M17,111 L183,111 L172,133 L28,133 Z" fill="#1a1832"/>
+          <path d="M17,111 Q7,113 11,129 L28,133 Z" fill="#1a1832"/>
+          <rect x="78" y="133" width="44" height="29" rx="4" fill="#1a1832"/>
+          <rect x="57" y="162" width="86" height="18" rx="6" fill="#1a1832"/>
         </svg>
+        <img class="wf-icon-lg logo-png" src="assets/logo.png" alt="WorldForge" style="display:none;width:160px;height:160px;object-fit:contain">
       </div>
     </div>
   </div>
@@ -270,7 +253,8 @@ footer{background:var(--sidebar);padding:32px 0}
         <div class="feature-icon">
           <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="4" width="18" height="18" rx="2"/>
-            <line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/>
+            <line x1="16" x2="16" y1="2" y2="6"/>
+            <line x1="8" x2="8" y1="2" y2="6"/>
             <line x1="3" x2="21" y1="10" y2="10"/>
           </svg>
         </div>
@@ -334,9 +318,7 @@ footer{background:var(--sidebar);padding:32px 0}
           <li class="dim">Sin límites de contenido</li>
         </ul>
         <a href="https://github.com/worldforgesupport/worldforge/releases/download/v1.0.0/WorldForgeSetup-1.0.0.exe"
-           class="btn-outline" style="width:100%;justify-content:center;border-color:var(--border)">
-          Descargar gratis
-        </a>
+           class="btn-outline" style="width:100%;justify-content:center">Descargar gratis</a>
       </div>
 
       <div class="plan-card featured">
@@ -352,9 +334,7 @@ footer{background:var(--sidebar);padding:32px 0}
           <li>Soporte prioritario</li>
         </ul>
         <a href="https://worldforge.lemonsqueezy.com/checkout/buy/65a2b81a-70e9-4380-8de4-9b85c833f96d"
-           class="btn-primary" style="width:100%;justify-content:center">
-          Obtener Premium →
-        </a>
+           class="btn-primary" style="width:100%;justify-content:center">Obtener Premium →</a>
       </div>
 
     </div>
@@ -366,7 +346,6 @@ footer{background:var(--sidebar);padding:32px 0}
   <div class="container">
     <div class="section-label">Versiones</div>
     <h2 class="section-title">Historial de cambios</h2>
-
     <div class="changelog-header">
       <span class="changelog-v">v1.0.0</span>
       <span class="changelog-date">7 de julio de 2026</span>
@@ -376,7 +355,7 @@ footer{background:var(--sidebar);padding:32px 0}
       <div class="changelog-group">
         <h4>Editor y Manuscrito</h4>
         <ul>
-          <li>Editor por capítulos con historial de versiones, modo Zen y sprint de escritura</li>
+          <li>Editor por capítulos con historial, modo Zen y sprint de escritura</li>
           <li>Estado del capítulo (Borrador / Revisión / Listo) con indicador visual</li>
           <li>Meta de palabras con barra de progreso en tiempo real</li>
           <li>Vista Tablero (corkboard) con sinopsis editable inline</li>
@@ -419,21 +398,20 @@ footer{background:var(--sidebar);padding:32px 0}
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-logo">
-      <img src="assets/logo.png" alt=""
-           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-      <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" style="display:none;width:22px;height:22px">
+    <a href="#" class="footer-logo">
+      <svg class="wf-icon logo-svg" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
         <rect width="36" height="36" rx="7" fill="#5c6bc0"/>
         <path d="M5,18 Q5,5 18,5 Q31,5 31,18 Z" fill="white"/>
-        <ellipse cx="13" cy="12" rx="4" ry="5.5" fill="#5c6bc0" opacity="0.7"/>
-        <ellipse cx="23.5" cy="13" rx="3.5" ry="4.5" fill="#5c6bc0" opacity="0.7"/>
-        <path d="M4,20 L32,20 L28.5,26 L7.5,26 Z" fill="white"/>
-        <path d="M4,20 Q1,21 2.5,25 L7.5,26 Z" fill="white"/>
-        <rect x="14" y="26" width="8" height="5.5" rx="1" fill="white"/>
-        <rect x="10" y="31.5" width="16" height="3.5" rx="1.5" fill="white"/>
+        <ellipse cx="12.5" cy="11.5" rx="4" ry="5.5" fill="#5c6bc0" opacity="0.65"/>
+        <ellipse cx="23" cy="12.5" rx="3.5" ry="4.5" fill="#5c6bc0" opacity="0.65"/>
+        <path d="M3.5,20.5 L32.5,20.5 L29,26.5 L7,26.5 Z" fill="white"/>
+        <path d="M3.5,20.5 Q0.5,21.5 2,25 L7,26.5 Z" fill="white"/>
+        <rect x="13.5" y="26.5" width="9" height="5.5" rx="1" fill="white"/>
+        <rect x="9.5" y="32" width="17" height="3.5" rx="1.5" fill="white"/>
       </svg>
+      <img class="wf-icon logo-png" src="assets/logo.png" alt="" style="display:none;border-radius:5px">
       WorldForge &copy; 2026
-    </div>
+    </a>
     <nav class="footer-links">
       <a href="privacy.html">Política de privacidad</a>
       <a href="terms.html">Términos de servicio</a>
@@ -443,15 +421,15 @@ footer{background:var(--sidebar);padding:32px 0}
 </footer>
 
 <script>
-// Mostrar SVG fallback si el PNG no carga (Artifact / desarrollo local)
-document.querySelectorAll('img[onerror]').forEach(img => {
-  if (!img.complete || img.naturalWidth === 0) {
-    img.style.display = 'none';
-    const next = img.nextElementSibling;
-    if (next) next.style.display = '';
-  }
-});
+// Cargar PNG real cuando esté disponible (GitHub Pages); en Artifact queda el SVG
+(function() {
+  var test = new Image();
+  test.onload = function() {
+    document.querySelectorAll('.logo-svg').forEach(function(el){ el.style.display = 'none'; });
+    document.querySelectorAll('.logo-png').forEach(function(el){ el.style.display = 'block'; });
+  };
+  test.src = 'assets/logo.png';
+})();
 </script>
-
 </body>
 </html>
