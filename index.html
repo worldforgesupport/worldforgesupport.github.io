@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WorldForge — Escribe tu mundo</title>
+<meta name="description" content="La aplicación de escritorio para planificar, escribir y desarrollar tu novela. Personajes, mapa, manuscrito, IA integrada — sin internet, sin distracciones.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #0B0B17;
+  --bg2:     #141428;
+  --bg3:     #1D1D3A;
+  --accent:  #C9972C;
+  --accent-h:#E6B94A;
+  --text:    #F0EDE6;
+  --text2:   #ACABC5;
+  --muted:   #7878A0;
+  --border:  #242442;
+  --r:       10px;
+  --serif:   'Playfair Display', Georgia, serif;
+  --sans:    'Inter', system-ui, sans-serif;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme=dark]) {
+    --bg:#F8F6F2; --bg2:#FFFFFF; --bg3:#EDE9E0;
+    --accent:#9A6D10; --accent-h:#C9972C;
+    --text:#18182C; --text2:#44445A; --muted:#88889A; --border:#E0DCCF;
+  }
+}
+:root[data-theme=light]{--bg:#F8F6F2;--bg2:#FFFFFF;--bg3:#EDE9E0;--accent:#9A6D10;--accent-h:#C9972C;--text:#18182C;--text2:#44445A;--muted:#88889A;--border:#E0DCCF;}
+:root[data-theme=dark]{--bg:#0B0B17;--bg2:#141428;--bg3:#1D1D3A;--accent:#C9972C;--accent-h:#E6B94A;--text:#F0EDE6;--text2:#ACABC5;--muted:#7878A0;--border:#242442;}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;font-size:1rem}
+img{max-width:100%}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent-h)}
+.container{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:14px 0;
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1080px;margin:0 auto;padding:0 24px;gap:16px}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:var(--sans);font-size:1.1rem;font-weight:700;letter-spacing:-.02em;color:var(--text)}
+.nav-logo svg{color:var(--accent);flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.btn-primary{background:var(--accent);color:#000;font-weight:600;font-size:.875rem;padding:9px 20px;border-radius:6px;border:none;cursor:pointer;transition:background .15s;text-decoration:none;display:inline-flex;align-items:center;gap:6px;line-height:1}
+.btn-primary:hover{background:var(--accent-h);color:#000}
+.btn-ghost{color:var(--text2);font-size:.875rem;font-weight:500;padding:8px 16px;border-radius:6px;border:1px solid var(--border);transition:border-color .15s,color .15s;text-decoration:none;display:inline-flex;align-items:center}
+.btn-ghost:hover{color:var(--text);border-color:var(--muted)}
+@media(max-width:600px){.nav-links .btn-ghost:not(.nav-dl){display:none}}
+
+/* ── HERO ── */
+.hero{padding:88px 0 76px;border-bottom:1px solid var(--border)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:24px}
+.hero-eyebrow svg{flex-shrink:0}
+.hero h1{
+  font-family:var(--serif);
+  font-size:clamp(2.8rem,7vw,5.2rem);
+  font-weight:900;
+  line-height:1.05;
+  letter-spacing:-.03em;
+  color:var(--text);
+  margin-bottom:24px;
+  text-wrap:balance;
+  max-width:720px;
+}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-sub{font-size:1.1rem;color:var(--text2);max-width:540px;line-height:1.7;margin-bottom:40px}
+.hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.hero-actions .btn-primary{font-size:1rem;padding:13px 26px}
+.hero-footnote{font-size:.8rem;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
+.hero-footnote span::before{content:'✓ ';color:var(--accent)}
+
+/* ── SECTIONS ── */
+.section{padding:80px 0;border-bottom:1px solid var(--border)}
+.section-label{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.section-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);font-weight:700;letter-spacing:-.025em;margin-bottom:48px;text-wrap:balance;max-width:640px}
+
+/* ── FEATURES ── */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.feature-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:28px;transition:border-color .2s}
+.feature-card:hover{border-color:color-mix(in srgb,var(--accent) 35%,transparent)}
+.feature-icon{width:40px;height:40px;background:color-mix(in srgb,var(--accent) 14%,transparent);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;color:var(--accent);flex-shrink:0}
+.feature-card h3{font-size:.975rem;font-weight:700;margin-bottom:14px;letter-spacing:-.01em}
+.feature-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+.feature-list li{font-size:.845rem;color:var(--text2);padding-left:14px;position:relative;line-height:1.45}
+.feature-list li::before{content:'›';position:absolute;left:0;color:var(--accent);font-weight:700;font-size:1.1em;line-height:1.3}
+
+/* ── PLANS ── */
+.plans-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:700px}
+.plan-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:32px;position:relative}
+.plan-card.featured{border-color:var(--accent)}
+.plan-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--accent);color:#000;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 14px;border-radius:20px;white-space:nowrap}
+.plan-name{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.plan-price{font-family:var(--serif);font-size:2.1rem;font-weight:700;color:var(--text);margin-bottom:4px;line-height:1.1}
+.plan-price-note{font-size:.78rem;color:var(--muted);margin-bottom:22px}
+.plan-divider{border:none;border-top:1px solid var(--border);margin:20px 0}
+.plan-features{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:28px}
+.plan-features li{font-size:.845rem;color:var(--text2);padding-left:20px;position:relative;line-height:1.4}
+.plan-features li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-size:.75rem;top:2px}
+.plan-features li.dim{color:var(--muted)}
+.plan-features li.dim::before{color:var(--border)}
+
+/* ── CHANGELOG ── */
+.changelog-header{display:flex;align-items:baseline;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+.changelog-v{font-family:var(--serif);font-size:1.5rem;font-weight:700}
+.changelog-date{font-size:.8rem;color:var(--muted);font-weight:500}
+.changelog-tag{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent);padding:2px 9px;border-radius:20px;border:1px solid color-mix(in srgb,var(--accent) 25%,transparent)}
+.changelog-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:28px}
+.changelog-group h4{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.changelog-group ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.changelog-group li{font-size:.82rem;color:var(--text2);padding-left:12px;position:relative;line-height:1.45}
+.changelog-group li::before{content:'·';position:absolute;left:1px;color:var(--accent);font-weight:900;font-size:1.1em}
+
+/* ── FOOTER ── */
+footer{padding:36px 0}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-logo{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.85rem}
+.footer-logo svg{color:var(--accent)}
+.footer-links{display:flex;gap:22px;flex-wrap:wrap}
+.footer-links a{font-size:.82rem;color:var(--muted)}
+.footer-links a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+      </svg>
+      WorldForge
+    </a>
+    <div class="nav-links">
+      <a href="#features" class="btn-ghost">Características</a>
+      <a href="#planes" class="btn-ghost">Planes</a>
+      <a href="#changelog" class="btn-ghost">Versiones</a>
+      <a href="https://github.com/worldforgesupport/worldforge/releases/download/v1.0.0/WorldForgeSetup-1.0.0.exe" class="btn-primary nav-dl">
+        ⬇ Descargar
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      Aplicación de escritorio · Windows
+    </div>
+    <h1>Tu historia<br>merece un <em>mundo</em><br>a su altura.</h1>
+    <p class="hero-sub">
+      Planifica personajes, escribe capítulos, construye tu mundo y exporta tu novela —
+      todo en una sola aplicación, sin internet y sin distracciones.
+    </p>
+    <div class="hero-actions">
+      <a href="https://github.com/worldforgesupport/worldforge/releases/download/v1.0.0/WorldForgeSetup-1.0.0.exe" class="btn-primary">
+        ⬇ Descargar para Windows
+      </a>
+      <a href="#features" class="btn-ghost">Ver características →</a>
+    </div>
+    <div class="hero-footnote">
+      <span>Gratis para empezar</span>
+      <span>Windows 10 / 11</span>
+      <span>Sin internet requerido</span>
+      <span>v1.0.0</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-label">Características</div>
+    <h2 class="section-title">Todo lo que necesitas<br>para escribir tu novela</h2>
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+          </svg>
+        </div>
+        <h3>Manuscrito</h3>
+        <ul class="feature-list">
+          <li>Editor por capítulos con estados: Borrador, Revisión y Listo</li>
+          <li>Modo Zen sin distracciones y sprints de escritura</li>
+          <li>Historial de versiones por capítulo</li>
+          <li>Meta de palabras con barra de progreso en tiempo real</li>
+          <li>Vista Tablero (corkboard) con sinopsis editable</li>
+          <li>Comentarios anclados junto al párrafo</li>
+          <li>Buscador con scroll automático al resultado</li>
+          <li>Exportación selectiva a DOCX, TXT y EPUB</li>
+          <li>Importar Markdown como capítulo</li>
+        </ul>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" x2="22" y1="12" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+        </div>
+        <h3>Construcción de mundo</h3>
+        <ul class="feature-list">
+          <li>Personajes con fichas completas, foto y rastreador de arco narrativo</li>
+          <li>Locaciones, grupos y wiki del mundo</li>
+          <li>Mapa interactivo con distancias y tiempos de viaje</li>
+          <li>Gráfico de relaciones interactivo entre personajes</li>
+          <li>Árbol genealógico por personaje</li>
+          <li>Escenas con POV y subtramas con color y filtro</li>
+          <li>Notas privadas del autor excluidas de exportaciones</li>
+        </ul>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/>
+            <line x1="3" x2="21" y1="10" y2="10"/>
+          </svg>
+        </div>
+        <h3>Organización</h3>
+        <ul class="feature-list">
+          <li>Kanban de tareas del proyecto</li>
+          <li>Calendario de eventos y cronología</li>
+          <li>Mapa anual de escritura (heatmap 52×7)</li>
+          <li>Racha diaria y metas de palabras</li>
+          <li>KPIs de manuscrito y proyecto</li>
+          <li>Gráfico de progreso acumulado (365 días)</li>
+          <li>Backup automático diario en %APPDATA%</li>
+          <li>Presentación de fichas en modo diapositivas</li>
+        </ul>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+            <path d="M5 3 4 6l-3 1 3 1 1 3 1-3 3-1-3-1z"/>
+          </svg>
+        </div>
+        <h3>Asistente de IA</h3>
+        <ul class="feature-list">
+          <li>Compatible con OpenAI, Google Gemini y Anthropic Claude</li>
+          <li>Revisión de gramática y estilo en el editor</li>
+          <li>Sinónimos en contexto con un clic</li>
+          <li>Preguntas sobre el capítulo actual</li>
+          <li>Generación de descripciones para personajes y locaciones</li>
+          <li>Expansión de ideas en la wiki</li>
+          <li>Usas tu propia clave de API — sin intermediarios</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section class="section" id="planes">
+  <div class="container">
+    <div class="section-label">Planes</div>
+    <h2 class="section-title">Empieza gratis,<br>expande cuando quieras</h2>
+    <div class="plans-row">
+
+      <div class="plan-card">
+        <div class="plan-name">Gratis</div>
+        <div class="plan-price">$0</div>
+        <div class="plan-price-note">Para siempre · Sin tarjeta</div>
+        <hr class="plan-divider">
+        <ul class="plan-features">
+          <li>Editor de manuscrito completo</li>
+          <li>Personajes, locaciones, wiki y escenas</li>
+          <li>Mapa, relaciones y árbol genealógico</li>
+          <li>Corrector ortográfico offline (ES / EN)</li>
+          <li>Exportación a DOCX y TXT</li>
+          <li>Asistente de IA (con tu propia clave API)</li>
+          <li>Backup automático diario</li>
+          <li class="dim">Exportación a EPUB</li>
+          <li class="dim">Sin límites de contenido</li>
+        </ul>
+        <a href="https://github.com/worldforgesupport/worldforge/releases/download/v1.0.0/WorldForgeSetup-1.0.0.exe" class="btn-ghost" style="width:100%;justify-content:center">Descargar gratis</a>
+      </div>
+
+      <div class="plan-card featured">
+        <div class="plan-badge">Recomendado</div>
+        <div class="plan-name">Premium</div>
+        <div class="plan-price">Ver precio</div>
+        <div class="plan-price-note">Suscripción mensual o anual</div>
+        <hr class="plan-divider">
+        <ul class="plan-features">
+          <li>Todo lo del plan Gratis</li>
+          <li>Exportación a EPUB</li>
+          <li>Sin límites de contenido</li>
+          <li>Soporte prioritario</li>
+        </ul>
+        <a href="https://worldforge.lemonsqueezy.com/checkout/buy/65a2b81a-70e9-4380-8de4-9b85c833f96d" class="btn-primary" style="width:100%;justify-content:center">Obtener Premium →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CHANGELOG -->
+<section class="section" id="changelog">
+  <div class="container">
+    <div class="section-label">Versiones</div>
+    <h2 class="section-title">Historial de cambios</h2>
+
+    <div class="changelog-header">
+      <span class="changelog-v">v1.0.0</span>
+      <span class="changelog-date">7 de julio de 2026</span>
+      <span class="changelog-tag">Lanzamiento inicial</span>
+    </div>
+    <div class="changelog-groups">
+      <div class="changelog-group">
+        <h4>Editor y Manuscrito</h4>
+        <ul>
+          <li>Editor por capítulos con historial de versiones, modo Zen y sprint de escritura</li>
+          <li>Estado del capítulo (Borrador / Revisión / Listo) con indicador visual</li>
+          <li>Meta de palabras con barra de progreso en tiempo real</li>
+          <li>Vista Tablero (corkboard) con sinopsis editable inline</li>
+          <li>Panel de comentarios anclados al párrafo</li>
+          <li>Exportación selectiva a TXT, DOCX y EPUB</li>
+          <li>Importar Markdown como capítulo</li>
+          <li>Buscador con scroll automático al resultado activo</li>
+          <li>Corrector ortográfico offline (Español / English)</li>
+        </ul>
+      </div>
+      <div class="changelog-group">
+        <h4>Mundo</h4>
+        <ul>
+          <li>Personajes, locaciones, grupos, wiki y escenas con fichas y fotos</li>
+          <li>POV por escena; subtramas con color y filtro en línea de tiempo</li>
+          <li>Gráfico de relaciones interactivo entre personajes</li>
+          <li>Árbol genealógico por personaje</li>
+          <li>Mapa con distancias, tiempos de viaje y marcadores de escena</li>
+          <li>Notas privadas del autor (excluidas de exportaciones)</li>
+          <li>Rastreador de arco narrativo con estado Muerto</li>
+        </ul>
+      </div>
+      <div class="changelog-group">
+        <h4>Organización, IA y App</h4>
+        <ul>
+          <li>Kanban de tareas, calendario y cronología del proyecto</li>
+          <li>Mapa anual de escritura (heatmap 52×7) y racha diaria</li>
+          <li>KPIs y gráfico de progreso acumulado (365 días)</li>
+          <li>IA integrada (OpenAI, Gemini, Claude): revisión, sinónimos, descripciones</li>
+          <li>Tema claro/oscuro, 12 paletas de acento y escala de fuente</li>
+          <li>Buscador global en toda la app</li>
+          <li>Backup automático diario en %APPDATA%\WorldForge\backup\</li>
+          <li>Licencia Premium con activación por clave (LemonSqueezy)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+        </svg>
+        WorldForge &copy; 2026
+      </div>
+      <nav class="footer-links">
+        <a href="privacy.html">Política de privacidad</a>
+        <a href="terms.html">Términos de servicio</a>
+        <a href="https://github.com/worldforgesupport/worldforge" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
