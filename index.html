@@ -103,6 +103,38 @@ nav{background:var(--sidebar);border-bottom:1px solid rgba(255,255,255,.06);padd
 .plan-features li.dim{color:var(--muted)}
 .plan-features li.dim::before{color:var(--border)}
 
+/* ── PRICE TABS ── */
+.price-tabs{display:flex;gap:6px;margin-bottom:14px}
+.price-tab{font-size:.73rem;font-weight:600;padding:5px 13px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all .15s}
+.price-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.price-save{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#16a34a;background:#dcfce7;border-radius:20px;padding:2px 8px;margin-left:4px;vertical-align:middle}
+@media(prefers-color-scheme:dark){.price-save{background:#14532d;color:#4ade80}}
+
+/* ── SMARTSCREEN ── */
+.install-intro{font-size:.9rem;color:var(--text2);max-width:580px;margin-bottom:40px;line-height:1.75}
+.install-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px}
+.install-step-num{font-size:.68rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.install-step-label{font-size:.92rem;font-weight:600;color:var(--text);margin-bottom:14px}
+.install-step-note{font-size:.8rem;color:var(--muted);margin-top:12px;line-height:1.5}
+.ss-dialog{background:#1b1b2e;border-radius:8px;overflow:hidden;border:1px solid #2d2d44;max-width:380px;font-family:'Segoe UI',system-ui,sans-serif;box-shadow:0 8px 32px rgba(0,0,0,.35)}
+.ss-titlebar{background:#2d2d44;padding:8px 14px;font-size:.73rem;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:8px}
+.ss-titlebar-dot{width:9px;height:9px;border-radius:50%}
+.ss-body{padding:22px 24px}
+.ss-row{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
+.ss-shield-wrap{flex-shrink:0;width:40px;height:40px;background:#1e4db7;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.ss-text-title{color:#fff;font-size:.9rem;font-weight:600;margin-bottom:4px}
+.ss-text-body{color:rgba(255,255,255,.55);font-size:.78rem;line-height:1.5}
+.ss-text-body strong{color:rgba(255,255,255,.8)}
+.ss-buttons{display:flex;flex-direction:column;gap:8px;margin-top:18px}
+.ss-btn{padding:8px 16px;border-radius:4px;font-size:.82rem;font-weight:500;text-align:center;cursor:default}
+.ss-btn-blue{background:#0078d4;color:#fff}
+.ss-btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.75)}
+.ss-btn-green{background:#107c10;color:#fff}
+.ss-link{color:#4ea6f0;font-size:.82rem;text-decoration:underline;cursor:default;margin-top:6px;display:inline-block}
+.ss-highlight-arrow{color:#4ea6f0;font-weight:700;margin-right:4px}
+.install-note{margin-top:32px;background:color-mix(in srgb,var(--accent) 8%,transparent);border:1px solid color-mix(in srgb,var(--accent) 20%,transparent);border-radius:var(--r);padding:18px 22px;font-size:.84rem;color:var(--text2);line-height:1.6;max-width:640px}
+.install-note strong{color:var(--text)}
+
 /* ── CHANGELOG ── */
 .changelog-header{display:flex;align-items:baseline;gap:14px;margin-bottom:22px;flex-wrap:wrap}
 .changelog-v{font-family:var(--serif);font-size:1.4rem;font-weight:700}
@@ -148,6 +180,7 @@ footer{background:var(--sidebar);padding:32px 0}
     <div class="nav-links">
       <a href="#features" class="btn-nav hide-mobile">Características</a>
       <a href="#planes" class="btn-nav hide-mobile">Planes</a>
+      <a href="#instalacion" class="btn-nav hide-mobile">Instalación</a>
       <a href="#changelog" class="btn-nav hide-mobile">Versiones</a>
       <a href="https://github.com/worldforgesupport/worldforge/releases/download/v1.0.0/WorldForgeSetup-1.0.0.exe" class="btn-primary">
         ⬇ Descargar
@@ -325,8 +358,12 @@ footer{background:var(--sidebar);padding:32px 0}
       <div class="plan-card featured">
         <div class="plan-badge">Recomendado</div>
         <div class="plan-name">Premium</div>
-        <div class="plan-price">Ver precio</div>
-        <div class="plan-price-note">Suscripción mensual o anual</div>
+        <div class="price-tabs">
+          <button class="price-tab active" onclick="setPremiumPrice(this,'$9.99','/ mes')">Mensual</button>
+          <button class="price-tab" onclick="setPremiumPrice(this,'$79','/ año <span class=\'price-save\'>Ahorra $41</span>')">Anual</button>
+        </div>
+        <div class="plan-price" id="premiumPrice">$9.99</div>
+        <div class="plan-price-note" id="premiumNote">/ mes</div>
         <hr class="plan-divider">
         <ul class="plan-features">
           <li>Todo lo del plan Gratis</li>
@@ -338,6 +375,82 @@ footer{background:var(--sidebar);padding:32px 0}
            class="btn-primary" style="width:100%;justify-content:center">Obtener Premium →</a>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- INSTALACIÓN / SMARTSCREEN -->
+<section class="section" id="instalacion">
+  <div class="container">
+    <div class="section-label">Instalación segura</div>
+    <h2 class="section-title">¿Por qué aparece un aviso de Windows?</h2>
+    <p class="install-intro">
+      Windows SmartScreen muestra una advertencia cuando ejecutas una aplicación que todavía no tiene
+      suficientes descargas registradas — es un proceso normal para apps nuevas. WorldForge no contiene
+      malware. Solo necesitas dos clics para continuar:
+    </p>
+    <div class="install-steps">
+
+      <div>
+        <div class="install-step-num">Paso 1</div>
+        <div class="install-step-label">Haz clic en <strong>"Más información"</strong></div>
+        <div class="ss-dialog">
+          <div class="ss-titlebar">
+            <div class="ss-titlebar-dot" style="background:#ff5f57"></div>
+            <div class="ss-titlebar-dot" style="background:#febc2e"></div>
+            <div class="ss-titlebar-dot" style="background:#28c840"></div>
+            <span style="margin-left:6px">Windows protegió tu equipo</span>
+          </div>
+          <div class="ss-body">
+            <div class="ss-row">
+              <div class="ss-shield-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              </div>
+              <div>
+                <div class="ss-text-title">Windows protegió tu equipo</div>
+                <div class="ss-text-body">Windows SmartScreen impidió que se iniciara una aplicación no reconocida. La aplicación <strong>WorldForgeSetup-1.0.0.exe</strong> podría dañar tu equipo.</div>
+              </div>
+            </div>
+            <div class="ss-buttons">
+              <div class="ss-btn ss-btn-ghost">No ejecutar</div>
+            </div>
+            <div class="ss-link"><span class="ss-highlight-arrow">→</span> Más información</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="install-step-num">Paso 2</div>
+        <div class="install-step-label">Haz clic en <strong>"Ejecutar de todas formas"</strong></div>
+        <div class="ss-dialog">
+          <div class="ss-titlebar">
+            <div class="ss-titlebar-dot" style="background:#ff5f57"></div>
+            <div class="ss-titlebar-dot" style="background:#febc2e"></div>
+            <div class="ss-titlebar-dot" style="background:#28c840"></div>
+            <span style="margin-left:6px">Windows protegió tu equipo</span>
+          </div>
+          <div class="ss-body">
+            <div class="ss-row">
+              <div class="ss-shield-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <div class="ss-text-title">WorldForgeSetup-1.0.0.exe</div>
+                <div class="ss-text-body">Editor: <strong>worldforgesupport</strong></div>
+              </div>
+            </div>
+            <div class="ss-buttons">
+              <div class="ss-btn ss-btn-green"><span class="ss-highlight-arrow">→</span> Ejecutar de todas formas</div>
+              <div class="ss-btn ss-btn-ghost">No ejecutar</div>
+            </div>
+          </div>
+        </div>
+        <div class="install-step-note">La instalación continuará normalmente. Tus proyectos y datos quedan solo en tu equipo.</div>
+      </div>
+
+    </div>
+    <div class="install-note">
+      <strong>¿Por qué ocurre esto?</strong> SmartScreen construye reputación por número de descargas — las apps nuevas siempre lo muestran, independientemente de si son seguras o no. A medida que más usuarios descarguen WorldForge, el aviso desaparecerá automáticamente.
     </div>
   </div>
 </section>
@@ -431,6 +544,13 @@ footer{background:var(--sidebar);padding:32px 0}
   };
   test.src = 'assets/logo.png';
 })();
+
+function setPremiumPrice(btn, price, note) {
+  document.querySelectorAll('.price-tab').forEach(function(t){ t.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('premiumPrice').textContent = price;
+  document.getElementById('premiumNote').innerHTML = note;
+}
 </script>
 </body>
 </html>
