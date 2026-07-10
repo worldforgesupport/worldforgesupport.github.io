@@ -10,24 +10,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ── Tokens idénticos a styles.css de la app ── */
+/* ── Tokens ── */
 :root {
-  --bg:      #f5f4f1;
-  --bg2:     #ffffff;
-  --bg3:     #f0eff9;
-  --accent:  #5c6bc0;
-  --accent-h:#7e57c2;
-  --text:    #1a1832;
-  --text2:   #4a4866;
-  --muted:   #7a788f;
-  --border:  #e2e0ef;
-  --sidebar: #1a1832;
-  --r:       12px;
-  --serif:   'Playfair Display', Georgia, serif;
-  --sans:    'Inter', system-ui, sans-serif;
+  --bg:#f5f4f1; --bg2:#ffffff; --bg3:#f0eff9;
+  --accent:#5c6bc0; --accent-h:#7e57c2;
+  --text:#1a1832; --text2:#4a4866; --muted:#7a788f; --border:#e2e0ef;
+  --sidebar:#1a1832; --r:12px;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme=light]) {
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme=light]){
     --bg:#0f0e1a;--bg2:#1a1832;--bg3:#221f38;
     --accent:#7c88d4;--accent-h:#9b83da;
     --text:#eceaf8;--text2:#b0adc8;--muted:#8c89a8;--border:#2d2a4a;
@@ -39,54 +32,112 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;font-size:1rem}
-img{max-width:100%}
+img{max-width:100%;display:block}
 a{color:var(--accent);text-decoration:none}
 a:hover{color:var(--accent-h)}
 .container{max-width:1080px;margin:0 auto;padding:0 24px}
 
-/* ── NAV — fondo oscuro igual al sidebar de la app ── */
+/* ── NAV ── */
 nav{background:var(--sidebar);border-bottom:1px solid rgba(255,255,255,.06);padding:14px 0;position:sticky;top:0;z-index:100}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1080px;margin:0 auto;padding:0 24px;gap:16px}
-.nav-logo{display:flex;align-items:center;gap:10px;color:#fff;font-family:var(--sans);font-size:1.05rem;font-weight:700;letter-spacing:.03em;text-decoration:none}
-.wf-icon{width:32px;height:32px;flex-shrink:0;display:block}
+.nav-logo{display:flex;align-items:center;gap:10px;color:#fff;font-size:1.05rem;font-weight:700;letter-spacing:.03em;text-decoration:none}
+.wf-icon{width:32px;height:32px;flex-shrink:0}
 .nav-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .btn-nav{color:rgba(255,255,255,.6);font-size:.85rem;font-weight:500;padding:7px 14px;border-radius:7px;border:1px solid rgba(255,255,255,.1);transition:all .15s;text-decoration:none}
 .btn-nav:hover{color:#fff;border-color:rgba(255,255,255,.25)}
-.btn-primary{background:var(--accent);color:#fff;font-weight:600;font-size:.875rem;padding:9px 20px;border-radius:7px;border:none;cursor:pointer;transition:background .15s;text-decoration:none;display:inline-flex;align-items:center;gap:6px;line-height:1}
-.btn-primary:hover{background:var(--accent-h);color:#fff}
-@media(max-width:620px){.btn-nav.hide-mobile{display:none}}
+.btn-primary{background:var(--accent);color:#fff!important;font-weight:600;font-size:.875rem;padding:9px 20px;border-radius:7px;border:none;cursor:pointer;transition:background .15s;text-decoration:none;display:inline-flex;align-items:center;gap:6px;line-height:1}
+.btn-primary:hover{background:var(--accent-h)}
+@media(max-width:640px){.btn-nav.hide-mobile{display:none}}
 
 /* ── HERO ── */
-.hero{padding:88px 0 76px;border-bottom:1px solid var(--border)}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:22px}
-.hero-layout{display:grid;grid-template-columns:1fr 200px;gap:56px;align-items:center}
-.hero h1{font-family:var(--serif);font-size:clamp(2.6rem,6.5vw,4.8rem);font-weight:900;line-height:1.06;letter-spacing:-.03em;color:var(--text);margin-bottom:22px;text-wrap:balance}
+.hero{padding:80px 0 0;border-bottom:1px solid var(--border)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
+.hero-center{text-align:center;max-width:760px;margin:0 auto}
+.hero h1{font-family:var(--serif);font-size:clamp(2.8rem,6vw,5rem);font-weight:900;line-height:1.04;letter-spacing:-.03em;color:var(--text);margin-bottom:22px;text-wrap:balance}
 .hero h1 em{font-style:italic;color:var(--accent)}
-.hero-sub{font-size:1.08rem;color:var(--text2);max-width:520px;line-height:1.7;margin-bottom:38px}
-.hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:26px}
-.hero-actions .btn-primary{font-size:.975rem;padding:12px 24px}
-.btn-outline{color:var(--text2);font-size:.9rem;font-weight:500;padding:11px 18px;border-radius:7px;border:1px solid var(--border);transition:all .15s;text-decoration:none;display:inline-flex;align-items:center}
+.hero-sub{font-size:1.08rem;color:var(--text2);max-width:520px;margin:0 auto 36px;line-height:1.7}
+.hero-actions{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+.hero-actions .btn-primary{font-size:1rem;padding:13px 28px}
+.btn-outline{color:var(--text2);font-size:.9rem;font-weight:500;padding:12px 18px;border-radius:7px;border:1px solid var(--border);transition:all .15s;text-decoration:none;display:inline-flex;align-items:center}
 .btn-outline:hover{color:var(--text);border-color:var(--muted)}
-.hero-footnote{font-size:.78rem;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
+.hero-footnote{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;font-size:.78rem;color:var(--muted);margin-bottom:56px}
 .hero-footnote span::before{content:'✓ ';color:var(--accent);font-weight:700}
-.hero-logo-wrap{display:flex;align-items:center;justify-content:center}
-.hero-logo-wrap .wf-icon-lg{width:160px;height:160px;display:block}
-@media(max-width:780px){.hero-layout{grid-template-columns:1fr}.hero-logo-wrap{display:none}}
+/* hero screenshot area */
+.hero-screen{margin:0 auto;max-width:900px;padding:0 0}
+.screen-chrome{background:var(--sidebar);border-radius:12px 12px 0 0;padding:10px 14px;display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.08);border-bottom:none}
+.chrome-dot{width:10px;height:10px;border-radius:50%}
+.chrome-bar{flex:1;height:22px;background:rgba(255,255,255,.07);border-radius:5px;margin:0 20px}
+.screen-img-wrap{border:1px solid rgba(255,255,255,.08);border-top:none;border-radius:0 0 12px 12px;overflow:hidden;background:var(--bg3);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center}
+.screen-img-wrap img{width:100%;height:100%;object-fit:cover;border-radius:0 0 12px 12px}
+.screen-placeholder{display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--muted);padding:40px}
+.screen-placeholder svg{opacity:.35}
+.screen-placeholder span{font-size:.8rem;opacity:.6}
+
+/* ── STATS BAR ── */
+.stats-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:22px 0}
+.stats-row{display:flex;justify-content:center;gap:0;flex-wrap:wrap}
+.stat-item{text-align:center;padding:8px 36px;border-right:1px solid var(--border)}
+.stat-item:last-child{border-right:none}
+.stat-value{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--text);line-height:1.1}
+.stat-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;margin-top:3px}
+@media(max-width:600px){.stat-item{border-right:none;border-bottom:1px solid var(--border);padding:12px 24px}.stat-item:last-child{border-bottom:none}}
 
 /* ── SECTIONS ── */
-.section{padding:80px 0;border-bottom:1px solid var(--border)}
+.section{padding:88px 0;border-bottom:1px solid var(--border)}
 .section-label{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
-.section-title{font-family:var(--serif);font-size:clamp(1.6rem,3.8vw,2.4rem);font-weight:700;letter-spacing:-.025em;margin-bottom:48px;text-wrap:balance;max-width:620px}
+.section-title{font-family:var(--serif);font-size:clamp(1.7rem,3.8vw,2.5rem);font-weight:700;letter-spacing:-.025em;margin-bottom:14px;text-wrap:balance;max-width:640px}
+.section-sub{font-size:.95rem;color:var(--text2);max-width:560px;line-height:1.7;margin-bottom:52px}
 
-/* ── FEATURES ── */
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
-.feature-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:26px;transition:border-color .2s,box-shadow .2s}
-.feature-card:hover{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 10%,transparent)}
-.feature-icon{width:38px;height:38px;background:color-mix(in srgb,var(--accent) 12%,transparent);border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:var(--accent)}
-.feature-card h3{font-size:.95rem;font-weight:700;margin-bottom:14px;letter-spacing:-.01em}
-.feature-list{list-style:none;display:flex;flex-direction:column;gap:7px}
-.feature-list li{font-size:.835rem;color:var(--text2);padding-left:14px;position:relative;line-height:1.45}
-.feature-list li::before{content:'›';position:absolute;left:0;color:var(--accent);font-weight:700;font-size:1.1em;line-height:1.3}
+/* ── CÓMO FUNCIONA ── */
+.steps-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative}
+.steps-row::before{content:'';position:absolute;top:30px;left:calc(16.6% + 16px);right:calc(16.6% + 16px);height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-h));opacity:.25;pointer-events:none}
+.step{text-align:center;padding:0 24px}
+.step-num{width:60px;height:60px;border-radius:50%;background:color-mix(in srgb,var(--accent) 12%,transparent);border:2px solid color-mix(in srgb,var(--accent) 30%,transparent);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:var(--accent);font-weight:700;font-size:1.1rem;font-family:var(--serif);position:relative;z-index:1;background:var(--bg)}
+.step-title{font-size:1rem;font-weight:700;margin-bottom:10px}
+.step-desc{font-size:.855rem;color:var(--text2);line-height:1.6}
+@media(max-width:680px){.steps-row{grid-template-columns:1fr;gap:36px}.steps-row::before{display:none}.step-num{margin-bottom:14px}}
+
+/* ── SHOWCASE ── */
+.showcase{display:flex;flex-direction:column;gap:80px}
+.showcase-item{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.showcase-item.flip{direction:rtl}
+.showcase-item.flip > *{direction:ltr}
+.showcase-text .kicker{font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.showcase-text h3{font-family:var(--serif);font-size:clamp(1.4rem,2.8vw,1.9rem);font-weight:700;letter-spacing:-.02em;margin-bottom:14px;line-height:1.2;text-wrap:balance}
+.showcase-text p{font-size:.9rem;color:var(--text2);line-height:1.75;margin-bottom:22px}
+.showcase-list{list-style:none;display:flex;flex-direction:column;gap:9px}
+.showcase-list li{font-size:.855rem;color:var(--text2);padding-left:18px;position:relative;line-height:1.45}
+.showcase-list li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700;font-size:.75rem;top:2px}
+.showcase-img{border-radius:14px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.12);border:1px solid var(--border)}
+.showcase-img img{width:100%;height:auto;display:block}
+.img-placeholder{aspect-ratio:4/3;background:var(--bg3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--muted)}
+.img-placeholder svg{opacity:.3}
+.img-placeholder span{font-size:.78rem;opacity:.55;font-weight:500}
+@media(max-width:780px){.showcase-item,.showcase-item.flip{grid-template-columns:1fr;direction:ltr;gap:32px}}
+
+/* ── PARA QUIÉN ── */
+.personas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.persona{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:26px;transition:border-color .2s,box-shadow .2s}
+.persona:hover{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 10%,transparent)}
+.persona-icon{font-size:1.8rem;margin-bottom:14px}
+.persona h3{font-size:.95rem;font-weight:700;margin-bottom:8px}
+.persona p{font-size:.83rem;color:var(--text2);line-height:1.55}
+
+/* ── COMPARATIVA ── */
+.compare-wrap{overflow-x:auto;border-radius:var(--r);border:1px solid var(--border)}
+.compare-table{width:100%;border-collapse:collapse;font-size:.875rem;min-width:560px}
+.compare-table thead tr{background:var(--bg2)}
+.compare-table th{padding:14px 18px;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;border-bottom:2px solid var(--border)}
+.compare-table th:first-child{color:var(--text)}
+.compare-table td{padding:13px 18px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:middle}
+.compare-table tbody tr:last-child td{border-bottom:none}
+.compare-table tbody tr:hover{background:var(--bg3)}
+.col-wf{background:color-mix(in srgb,var(--accent) 5%,transparent)!important;font-weight:600;color:var(--text)!important}
+.col-wf td:first-child{color:var(--text)!important}
+.c-yes{color:var(--accent);font-weight:700}
+.c-no{color:var(--border);font-weight:700}
+.c-par{color:var(--muted)}
+.compare-note{font-size:.78rem;color:var(--muted);margin-top:14px;line-height:1.5}
 
 /* ── PLANS ── */
 .plans-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;max-width:680px}
@@ -95,20 +146,29 @@ nav{background:var(--sidebar);border-bottom:1px solid rgba(255,255,255,.06);padd
 .plan-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:.67rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 14px;border-radius:20px;white-space:nowrap}
 .plan-name{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .plan-price{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--text);margin-bottom:4px;line-height:1.1}
-.plan-price-note{font-size:.77rem;color:var(--muted);margin-bottom:20px}
+.plan-price-note{font-size:.77rem;color:var(--muted);margin-bottom:20px;min-height:1.2em}
 .plan-divider{border:none;border-top:1px solid var(--border);margin:18px 0}
 .plan-features{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:26px}
 .plan-features li{font-size:.835rem;color:var(--text2);padding-left:20px;position:relative;line-height:1.4}
 .plan-features li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-size:.75rem;top:2px;font-weight:700}
 .plan-features li.dim{color:var(--muted)}
 .plan-features li.dim::before{color:var(--border)}
-
-/* ── PRICE TABS ── */
 .price-tabs{display:flex;gap:6px;margin-bottom:14px}
 .price-tab{font-size:.73rem;font-weight:600;padding:5px 13px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all .15s}
 .price-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-.price-save{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#16a34a;background:#dcfce7;border-radius:20px;padding:2px 8px;margin-left:4px;vertical-align:middle}
+.price-save{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#16a34a;background:#dcfce7;border-radius:20px;padding:2px 8px;margin-left:4px}
 @media(prefers-color-scheme:dark){.price-save{background:#14532d;color:#4ade80}}
+
+/* ── FAQ ── */
+.faq-list{display:flex;flex-direction:column;gap:8px;max-width:720px}
+.faq-item{border:1px solid var(--border);border-radius:var(--r);overflow:hidden;background:var(--bg2)}
+.faq-q{padding:18px 20px;font-weight:600;font-size:.92rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;user-select:none}
+.faq-q:hover{color:var(--accent)}
+.faq-arrow{flex-shrink:0;transition:transform .2s;color:var(--muted)}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-a{padding:0 20px;max-height:0;overflow:hidden;transition:max-height .25s ease,padding .2s}
+.faq-item.open .faq-a{max-height:400px;padding:0 20px 18px}
+.faq-a p{font-size:.875rem;color:var(--text2);line-height:1.75}
 
 /* ── SMARTSCREEN ── */
 .install-intro{font-size:.9rem;color:var(--text2);max-width:580px;margin-bottom:40px;line-height:1.75}
@@ -124,16 +184,22 @@ nav{background:var(--sidebar);border-bottom:1px solid rgba(255,255,255,.06);padd
 .ss-shield-wrap{flex-shrink:0;width:40px;height:40px;background:#1e4db7;border-radius:50%;display:flex;align-items:center;justify-content:center}
 .ss-text-title{color:#fff;font-size:.9rem;font-weight:600;margin-bottom:4px}
 .ss-text-body{color:rgba(255,255,255,.55);font-size:.78rem;line-height:1.5}
-.ss-text-body strong{color:rgba(255,255,255,.8)}
 .ss-buttons{display:flex;flex-direction:column;gap:8px;margin-top:18px}
 .ss-btn{padding:8px 16px;border-radius:4px;font-size:.82rem;font-weight:500;text-align:center;cursor:default}
-.ss-btn-blue{background:#0078d4;color:#fff}
 .ss-btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.75)}
 .ss-btn-green{background:#107c10;color:#fff}
 .ss-link{color:#4ea6f0;font-size:.82rem;text-decoration:underline;cursor:default;margin-top:6px;display:inline-block}
-.ss-highlight-arrow{color:#4ea6f0;font-weight:700;margin-right:4px}
 .install-note{margin-top:32px;background:color-mix(in srgb,var(--accent) 8%,transparent);border:1px solid color-mix(in srgb,var(--accent) 20%,transparent);border-radius:var(--r);padding:18px 22px;font-size:.84rem;color:var(--text2);line-height:1.6;max-width:640px}
 .install-note strong{color:var(--text)}
+
+/* ── CTA FINAL ── */
+.cta-final{background:var(--sidebar);padding:100px 0;text-align:center;border-bottom:none}
+.cta-final .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:18px}
+.cta-final h2{font-family:var(--serif);font-size:clamp(2rem,5vw,3.4rem);font-weight:900;line-height:1.08;letter-spacing:-.03em;color:#fff;margin-bottom:18px;text-wrap:balance}
+.cta-final h2 em{font-style:italic;color:var(--accent)}
+.cta-final p{font-size:.98rem;color:rgba(255,255,255,.55);max-width:460px;margin:0 auto 40px;line-height:1.7}
+.cta-final .btn-primary{font-size:1rem;padding:14px 32px}
+.cta-footnote{font-size:.78rem;color:rgba(255,255,255,.3);margin-top:16px}
 
 /* ── CHANGELOG ── */
 .changelog-header{display:flex;align-items:baseline;gap:14px;margin-bottom:22px;flex-wrap:wrap}
@@ -162,7 +228,6 @@ footer{background:var(--sidebar);padding:32px 0}
 <nav>
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <!-- SVG por defecto; JS lo reemplaza con el PNG si está disponible -->
       <svg class="wf-icon logo-svg" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
         <rect width="36" height="36" rx="7" fill="#5c6bc0"/>
         <path d="M5,18 Q5,5 18,5 Q31,5 31,18 Z" fill="white"/>
@@ -178,10 +243,10 @@ footer{background:var(--sidebar);padding:32px 0}
       WorldForge
     </a>
     <div class="nav-links">
-      <a href="#features" class="btn-nav hide-mobile">Características</a>
+      <a href="#como-funciona" class="btn-nav hide-mobile">Cómo funciona</a>
+      <a href="#caracteristicas" class="btn-nav hide-mobile">Características</a>
       <a href="#planes" class="btn-nav hide-mobile">Planes</a>
-      <a href="#instalacion" class="btn-nav hide-mobile">Instalación</a>
-      <a href="#changelog" class="btn-nav hide-mobile">Versiones</a>
+      <a href="#faq" class="btn-nav hide-mobile">FAQ</a>
       <a href="https://github.com/worldforgesupport/worldforge/releases/download/v1.0.0/WorldForgeSetup-1.0.0.exe" class="btn-primary">
         ⬇ Descargar
       </a>
@@ -192,147 +257,336 @@ footer{background:var(--sidebar);padding:32px 0}
 <!-- HERO -->
 <section class="hero">
   <div class="container">
-    <div class="hero-layout">
-      <div>
-        <div class="hero-eyebrow">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          Aplicación de escritorio · Windows
-        </div>
-        <h1>Tu historia<br>merece un <em>mundo</em><br>a su altura.</h1>
-        <p class="hero-sub">
-          Planifica personajes, escribe capítulos, construye tu mundo y exporta tu novela —
-          todo en una sola aplicación, sin distracciones. Tu contenido siempre en tu equipo.
-        </p>
-        <div class="hero-actions">
-          <a href="https://github.com/worldforgesupport/worldforge/releases/download/v1.0.0/WorldForgeSetup-1.0.0.exe" class="btn-primary">
-            ⬇ Descargar para Windows
-          </a>
-          <a href="#features" class="btn-outline">Ver características →</a>
-        </div>
-        <div class="hero-footnote">
-          <span>Gratis para empezar</span>
-          <span>Windows 10 / 11</span>
-          <span>Editor y datos 100% offline</span>
-          <span>v1.0.0</span>
-        </div>
+    <div class="hero-center">
+      <div class="hero-eyebrow">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Aplicación de escritorio · Windows
       </div>
-      <div class="hero-logo-wrap">
-        <!-- SVG hero logo por defecto -->
-        <svg class="wf-icon-lg logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <rect width="200" height="200" rx="36" fill="#f0eff9"/>
-          <rect width="200" height="200" rx="36" fill="color-mix(in srgb,#5c6bc0 8%,transparent)"/>
-          <path d="M22,100 Q22,28 100,28 Q178,28 178,100 Z" fill="#1a1832"/>
-          <ellipse cx="72" cy="62" rx="23" ry="29" fill="#f0eff9" opacity="0.6"/>
-          <ellipse cx="130" cy="67" rx="19" ry="23" fill="#f0eff9" opacity="0.6"/>
-          <line x1="22" y1="100" x2="178" y2="100" stroke="rgba(240,239,249,.35)" stroke-width="3"/>
-          <path d="M17,111 L183,111 L172,133 L28,133 Z" fill="#1a1832"/>
-          <path d="M17,111 Q7,113 11,129 L28,133 Z" fill="#1a1832"/>
-          <rect x="78" y="133" width="44" height="29" rx="4" fill="#1a1832"/>
-          <rect x="57" y="162" width="86" height="18" rx="6" fill="#1a1832"/>
-        </svg>
-        <img class="wf-icon-lg logo-png" src="assets/logo.png" alt="WorldForge" style="display:none;width:160px;height:160px;object-fit:contain">
+      <h1>Tu historia merece<br>un <em>mundo</em> a su altura.</h1>
+      <p class="hero-sub">
+        Planifica personajes, escribe capítulos, construye tu mundo y exporta tu novela —
+        todo en una sola app, sin suscripciones obligatorias ni datos en la nube.
+      </p>
+      <div class="hero-actions">
+        <a href="https://github.com/worldforgesupport/worldforge/releases/download/v1.0.0/WorldForgeSetup-1.0.0.exe" class="btn-primary">
+          ⬇ Descargar gratis para Windows
+        </a>
+        <a href="#como-funciona" class="btn-outline">Ver cómo funciona →</a>
+      </div>
+      <div class="hero-footnote">
+        <span>Gratis para siempre</span>
+        <span>Windows 10 / 11</span>
+        <span>100% offline</span>
+        <span>v1.0.0</span>
+      </div>
+    </div>
+    <!-- Captura principal de la app -->
+    <div class="hero-screen">
+      <div class="screen-chrome">
+        <div class="chrome-dot" style="background:#ff5f57"></div>
+        <div class="chrome-dot" style="background:#febc2e"></div>
+        <div class="chrome-dot" style="background:#28c840"></div>
+        <div class="chrome-bar"></div>
+      </div>
+      <div class="screen-img-wrap">
+        <!-- Reemplazar con: <img src="assets/wf-editor.png" alt="WorldForge — editor de manuscrito"> -->
+        <div class="screen-placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span>wf-editor.png</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section class="section" id="features">
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-value">100%</div>
+        <div class="stat-label">Offline</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">12+</div>
+        <div class="stat-label">Módulos integrados</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">$0</div>
+        <div class="stat-label">Para empezar</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">3</div>
+        <div class="stat-label">IAs compatibles</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CÓMO FUNCIONA -->
+<section class="section" id="como-funciona">
+  <div class="container">
+    <div class="section-label">Cómo funciona</div>
+    <h2 class="section-title">De la idea a la novela terminada</h2>
+    <p class="section-sub">WorldForge acompaña cada etapa del proceso creativo en un solo lugar.</p>
+    <div class="steps-row">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3 class="step-title">Planifica tu mundo</h3>
+        <p class="step-desc">Crea fichas de personajes, diseña el mapa, organiza escenas y construye la wiki de tu universo antes de escribir la primera línea.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3 class="step-title">Escribe sin distracciones</h3>
+        <p class="step-desc">El editor por capítulos tiene modo Zen, corrector ortográfico offline, sprints cronometrados y versiones automáticas de cada capítulo.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3 class="step-title">Exporta y comparte</h3>
+        <p class="step-desc">Exporta tu manuscrito a DOCX, EPUB o TXT con un clic. Elige qué capítulos incluir y mantén el formato listo para editoriales o lectores beta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARACTERÍSTICAS / SHOWCASE -->
+<section class="section" id="caracteristicas">
   <div class="container">
     <div class="section-label">Características</div>
-    <h2 class="section-title">Todo lo que necesitas para escribir tu novela</h2>
-    <div class="features-grid">
+    <h2 class="section-title">Todo lo que necesitas, nada que sobre</h2>
+    <p class="section-sub">Diseñado para escritores que quieren herramientas serias sin la curva de aprendizaje de Scrivener ni la dispersión de tener diez archivos abiertos.</p>
 
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
-          </svg>
+    <div class="showcase">
+
+      <!-- 1: Editor -->
+      <div class="showcase-item">
+        <div class="showcase-text">
+          <div class="kicker">Manuscrito</div>
+          <h3>Un editor pensado para escritores de largo aliento</h3>
+          <p>Organiza tu novela por capítulos, asigna estados (Borrador, Revisión, Listo) y escribe con todas las herramientas a un clic — sin perder el foco en el texto.</p>
+          <ul class="showcase-list">
+            <li>Modo Zen: pantalla completa sin distracciones</li>
+            <li>Corrector ortográfico offline en español e inglés</li>
+            <li>Historial de versiones por capítulo</li>
+            <li>Meta de palabras con barra de progreso en tiempo real</li>
+            <li>Vista Tablero (corkboard) con sinopsis editable</li>
+            <li>Importar .docx y .md directamente</li>
+          </ul>
         </div>
-        <h3>Manuscrito</h3>
-        <ul class="feature-list">
-          <li>Editor por capítulos con estados: Borrador, Revisión, Listo</li>
-          <li>Modo Zen y sprints de escritura cronometrados</li>
-          <li>Historial de versiones por capítulo</li>
-          <li>Meta de palabras con barra de progreso en tiempo real</li>
-          <li>Vista Tablero (corkboard) con sinopsis editable</li>
-          <li>Comentarios anclados junto al párrafo</li>
-          <li>Buscador con scroll automático al resultado</li>
-          <li>Exportación selectiva a DOCX, EPUB y TXT</li>
-          <li>Importar archivos Markdown como capítulo</li>
-        </ul>
+        <div class="showcase-img">
+          <!-- <img src="assets/wf-editor.png" alt="Editor de manuscrito WorldForge"> -->
+          <div class="img-placeholder">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            <span>wf-editor.png</span>
+          </div>
+        </div>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="2" x2="22" y1="12" y2="12"/>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-          </svg>
+      <!-- 2: Mapa -->
+      <div class="showcase-item flip">
+        <div class="showcase-text">
+          <div class="kicker">Mapa interactivo</div>
+          <h3>Construye el mundo que tus personajes habitan</h3>
+          <p>Dibuja el mapa de tu mundo con capas personalizadas, ubica personajes y locaciones, y calcula distancias y tiempos de viaje para que tu historia sea coherente.</p>
+          <ul class="showcase-list">
+            <li>Canvas interactivo con zoom y capas</li>
+            <li>Sprites de personajes, locaciones, templos y más</li>
+            <li>Cálculo automático de distancias y tiempos</li>
+            <li>Agrupación de sprites por época o tipo</li>
+            <li>Marcadores enlazados a fichas de personaje</li>
+          </ul>
         </div>
-        <h3>Construcción de mundo</h3>
-        <ul class="feature-list">
-          <li>Personajes con fichas completas, foto y arco narrativo</li>
-          <li>Locaciones, grupos y wiki del mundo</li>
-          <li>Mapa interactivo con distancias y tiempos de viaje</li>
-          <li>Gráfico de relaciones interactivo entre personajes</li>
-          <li>Árbol genealógico por personaje</li>
-          <li>Escenas con POV y subtramas con color y filtro</li>
-          <li>Notas privadas del autor excluidas de exportaciones</li>
-        </ul>
+        <div class="showcase-img">
+          <!-- <img src="assets/wf-mapa.png" alt="Mapa interactivo WorldForge"> -->
+          <div class="img-placeholder">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span>wf-mapa.png</span>
+          </div>
+        </div>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4" width="18" height="18" rx="2"/>
-            <line x1="16" x2="16" y1="2" y2="6"/>
-            <line x1="8" x2="8" y1="2" y2="6"/>
-            <line x1="3" x2="21" y1="10" y2="10"/>
-          </svg>
+      <!-- 3: Personajes -->
+      <div class="showcase-item">
+        <div class="showcase-text">
+          <div class="kicker">Personajes y worldbuilding</div>
+          <h3>Conoce a tus personajes mejor que ellos mismos</h3>
+          <p>Fichas completas, árbol genealógico, gráfico de relaciones y una wiki del mundo que crece contigo. Todo conectado para que nada se te escape.</p>
+          <ul class="showcase-list">
+            <li>Fichas con foto, arco narrativo y notas privadas</li>
+            <li>Árbol genealógico interactivo por personaje</li>
+            <li>Gráfico de relaciones con tipos y descripción</li>
+            <li>Wiki del mundo con secciones personalizadas</li>
+            <li>Línea de tiempo de escenas con POV y subtramas</li>
+          </ul>
         </div>
-        <h3>Organización</h3>
-        <ul class="feature-list">
-          <li>Kanban de tareas del proyecto</li>
-          <li>Calendario de eventos y cronología</li>
-          <li>Mapa anual de escritura (heatmap 52×7)</li>
-          <li>Racha diaria y metas de palabras</li>
-          <li>KPIs de manuscrito y proyecto</li>
-          <li>Gráfico de progreso acumulado (365 días)</li>
-          <li>Backup automático diario en %APPDATA%</li>
-          <li>Presentación de fichas en modo diapositivas</li>
-        </ul>
+        <div class="showcase-img">
+          <!-- <img src="assets/wf-personaje.png" alt="Ficha de personaje WorldForge"> -->
+          <div class="img-placeholder">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+            <span>wf-personaje.png</span>
+          </div>
+        </div>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
-            <path d="M5 3 4 6l-3 1 3 1 1 3 1-3 3-1-3-1z"/>
-          </svg>
+      <!-- 4: Stats -->
+      <div class="showcase-item flip">
+        <div class="showcase-text">
+          <div class="kicker">Seguimiento y productividad</div>
+          <h3>Mantén el impulso día tras día</h3>
+          <p>Un panel de estadísticas que te muestra tu progreso real: palabras escritas, racha diaria, heatmap anual y KPIs del manuscrito. Escribir con datos, no con suposiciones.</p>
+          <ul class="showcase-list">
+            <li>Mapa anual de escritura (heatmap 52 × 7)</li>
+            <li>Racha diaria y meta de palabras configurable</li>
+            <li>KPIs: palabras, capítulos, tiempo de lectura estimado</li>
+            <li>Gráfico de progreso acumulado (365 días)</li>
+            <li>Sprint de escritura cronometrado con cuenta atrás</li>
+          </ul>
         </div>
-        <h3>Asistente de IA</h3>
-        <ul class="feature-list">
-          <li>Compatible con OpenAI, Google Gemini y Anthropic Claude</li>
-          <li>Revisión de gramática y estilo en el editor</li>
-          <li>Sinónimos en contexto con un clic</li>
-          <li>Preguntas sobre el capítulo actual</li>
-          <li>Generación de descripciones para personajes y locaciones</li>
-          <li>Expansión de ideas en la wiki</li>
-          <li>Usas tu propia clave de API — sin intermediarios</li>
-        </ul>
+        <div class="showcase-img">
+          <!-- <img src="assets/wf-stats.png" alt="Dashboard de estadísticas WorldForge"> -->
+          <div class="img-placeholder">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>
+            <span>wf-stats.png</span>
+          </div>
+        </div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- PLANS -->
+<!-- PARA QUIÉN -->
+<section class="section" id="para-quien">
+  <div class="container">
+    <div class="section-label">Para quién es</div>
+    <h2 class="section-title">Hecho para escritores serios</h2>
+    <p class="section-sub">Sin importar el género ni la experiencia, WorldForge se adapta a tu forma de trabajar.</p>
+    <div class="personas-grid">
+      <div class="persona">
+        <div class="persona-icon">📖</div>
+        <h3>Novelistas</h3>
+        <p>Escribe y organiza novelas de cualquier longitud con capítulos, estados de revisión y exportación a formatos editoriales.</p>
+      </div>
+      <div class="persona">
+        <div class="persona-icon">🗺️</div>
+        <h3>Escritores de fantasía y sci-fi</h3>
+        <p>Construye mundos completos con mapas, linajes, wikis y sistemas de magia. Todo en un solo proyecto.</p>
+      </div>
+      <div class="persona">
+        <div class="persona-icon">🌱</div>
+        <h3>Principiantes</h3>
+        <p>Interfaz clara desde el primer día. Sin configuración compleja ni manuales. Instala y empieza a escribir.</p>
+      </div>
+      <div class="persona">
+        <div class="persona-icon">🔒</div>
+        <h3>Escritores que valoran la privacidad</h3>
+        <p>Tus historias solo existen en tu equipo. Sin cuentas, sin nube, sin que nadie lea tus borradores.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARATIVA -->
+<section class="section" id="comparativa">
+  <div class="container">
+    <div class="section-label">Comparativa</div>
+    <h2 class="section-title">¿Por qué WorldForge?</h2>
+    <p class="section-sub">Las herramientas genéricas no están diseñadas para ficción. WorldForge, sí.</p>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Característica</th>
+            <th style="color:var(--accent)">WorldForge</th>
+            <th>Word / 365</th>
+            <th>Google Docs</th>
+            <th>Scrivener</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Gratis para empezar</td>
+            <td class="col-wf c-yes">✓</td>
+            <td class="c-no">✗</td>
+            <td class="c-yes">✓</td>
+            <td class="c-no">✗</td>
+          </tr>
+          <tr>
+            <td>100% offline</td>
+            <td class="col-wf c-yes">✓</td>
+            <td class="c-yes">✓</td>
+            <td class="c-par">Parcial</td>
+            <td class="c-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Fichas de personajes</td>
+            <td class="col-wf c-yes">✓</td>
+            <td class="c-no">✗</td>
+            <td class="c-no">✗</td>
+            <td class="c-par">Básico</td>
+          </tr>
+          <tr>
+            <td>Mapa interactivo</td>
+            <td class="col-wf c-yes">✓</td>
+            <td class="c-no">✗</td>
+            <td class="c-no">✗</td>
+            <td class="c-no">✗</td>
+          </tr>
+          <tr>
+            <td>Árbol genealógico</td>
+            <td class="col-wf c-yes">✓</td>
+            <td class="c-no">✗</td>
+            <td class="c-no">✗</td>
+            <td class="c-no">✗</td>
+          </tr>
+          <tr>
+            <td>Gráfico de relaciones</td>
+            <td class="col-wf c-yes">✓</td>
+            <td class="c-no">✗</td>
+            <td class="c-no">✗</td>
+            <td class="c-no">✗</td>
+          </tr>
+          <tr>
+            <td>Corrector ortográfico offline</td>
+            <td class="col-wf c-yes">✓</td>
+            <td class="c-yes">✓</td>
+            <td class="c-no">✗</td>
+            <td class="c-no">✗</td>
+          </tr>
+          <tr>
+            <td>Asistente de IA integrado</td>
+            <td class="col-wf c-yes">✓</td>
+            <td class="c-par">Copilot</td>
+            <td class="c-par">Gemini</td>
+            <td class="c-no">✗</td>
+          </tr>
+          <tr>
+            <td>Exportación a EPUB</td>
+            <td class="col-wf c-par">Premium</td>
+            <td class="c-no">✗</td>
+            <td class="c-no">✗</td>
+            <td class="c-yes">✓</td>
+          </tr>
+          <tr>
+            <td>Precio</td>
+            <td class="col-wf" style="color:var(--accent)">Gratis · $9.99/mes</td>
+            <td class="c-par">$9.99/mes</td>
+            <td class="c-yes">Gratis</td>
+            <td class="c-par">$59.99 único</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="compare-note">Comparativa orientativa. Precios y características de terceros sujetos a cambio.</p>
+  </div>
+</section>
+
+<!-- PLANES -->
 <section class="section" id="planes">
   <div class="container">
     <div class="section-label">Planes</div>
     <h2 class="section-title">Empieza gratis, expande cuando quieras</h2>
+    <p class="section-sub" style="margin-bottom:36px">Sin tarjeta de crédito para empezar. Sin límite de tiempo en el plan gratuito.</p>
     <div class="plans-row">
 
       <div class="plan-card">
@@ -379,6 +633,65 @@ footer{background:var(--sidebar);padding:32px 0}
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-label">Preguntas frecuentes</div>
+    <h2 class="section-title">Todo lo que necesitas saber</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿WorldForge funciona sin conexión a internet?
+          <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a"><p>Sí, 100% offline. El editor, el corrector ortográfico, el mapa, las fichas de personajes y todos los módulos funcionan sin internet. Solo el asistente de IA y las actualizaciones automáticas usan internet, y únicamente si tú los activas.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Dónde se guardan mis proyectos y datos?
+          <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a"><p>En tu propio equipo, dentro de <code style="background:var(--bg3);padding:1px 6px;border-radius:4px;font-size:.85em">%APPDATA%\WorldForge\</code>. Nunca se sincronizan con ningún servidor. Tus historias son tuyas.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Puedo importar un manuscrito que ya tengo en Word?
+          <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a"><p>Sí. WorldForge importa archivos <strong>.docx</strong> y <strong>.md</strong> directamente desde el editor de capítulos. El contenido se convierte automáticamente al formato interno de la app.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Hay versión para Mac o Linux?
+          <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a"><p>Actualmente WorldForge solo está disponible para <strong>Windows 10 y 11</strong>. Las versiones para Mac y Linux están en la hoja de ruta y se anunciarán en cuanto estén disponibles.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué pasa si cancelo el plan Premium?
+          <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a"><p>Tus proyectos y todos los datos quedan intactos en tu equipo. Simplemente vuelves al plan gratuito, con acceso completo a todas las funciones base. No pierdes ningún contenido.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Cómo funciona el asistente de IA?
+          <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a"><p>WorldForge es compatible con <strong>OpenAI</strong>, <strong>Google Gemini</strong> y <strong>Anthropic Claude</strong>. Introduces tu propia clave de API en Configuración y la app la usa directamente — sin intermediarios, sin costos extra de nuestra parte. Pagas solo lo que consumes con tu proveedor de IA.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- INSTALACIÓN / SMARTSCREEN -->
 <section class="section" id="instalacion">
   <div class="container">
@@ -399,7 +712,7 @@ footer{background:var(--sidebar);padding:32px 0}
             <div class="ss-titlebar-dot" style="background:#ff5f57"></div>
             <div class="ss-titlebar-dot" style="background:#febc2e"></div>
             <div class="ss-titlebar-dot" style="background:#28c840"></div>
-            <span style="margin-left:6px">Windows protegió tu equipo</span>
+            <span style="margin-left:6px">Windows protegió su PC</span>
           </div>
           <div class="ss-body">
             <div class="ss-row">
@@ -408,13 +721,13 @@ footer{background:var(--sidebar);padding:32px 0}
               </div>
               <div>
                 <div class="ss-text-title">Windows protegió su PC</div>
-                <div class="ss-text-body">SmartScreen de Microsoft Defender evitó que se iniciara una aplicación desconocida. Ejecutar esta aplicación puede suponer un riesgo para tu PC.</div>
+                <div class="ss-text-body" style="color:rgba(255,255,255,.65)">SmartScreen de Microsoft Defender evitó que se iniciara una aplicación desconocida. Ejecutar esta aplicación puede suponer un riesgo para tu PC.</div>
               </div>
             </div>
             <div class="ss-buttons">
               <div class="ss-btn ss-btn-ghost">No ejecutar</div>
             </div>
-            <div class="ss-link"><span class="ss-highlight-arrow">→</span> Más información</div>
+            <div class="ss-link"><span style="color:#4ea6f0;font-weight:700;margin-right:3px">→</span> Más información</div>
           </div>
         </div>
       </div>
@@ -427,7 +740,7 @@ footer{background:var(--sidebar);padding:32px 0}
             <div class="ss-titlebar-dot" style="background:#ff5f57"></div>
             <div class="ss-titlebar-dot" style="background:#febc2e"></div>
             <div class="ss-titlebar-dot" style="background:#28c840"></div>
-            <span style="margin-left:6px">Windows protegió tu equipo</span>
+            <span style="margin-left:6px">Windows protegió su PC</span>
           </div>
           <div class="ss-body">
             <div class="ss-row">
@@ -436,11 +749,11 @@ footer{background:var(--sidebar);padding:32px 0}
               </div>
               <div>
                 <div class="ss-text-title">WorldForgeSetup-1.0.0.exe</div>
-                <div class="ss-text-body">Editor: <strong>worldforgesupport</strong></div>
+                <div class="ss-text-body">Editor: <strong style="color:rgba(255,255,255,.8)">worldforgesupport</strong></div>
               </div>
             </div>
             <div class="ss-buttons">
-              <div class="ss-btn ss-btn-green"><span class="ss-highlight-arrow">→</span> Ejecutar de todas formas</div>
+              <div class="ss-btn ss-btn-green"><span style="font-weight:700;margin-right:4px">→</span> Ejecutar de todas formas</div>
               <div class="ss-btn ss-btn-ghost">No ejecutar</div>
             </div>
           </div>
@@ -452,6 +765,19 @@ footer{background:var(--sidebar);padding:32px 0}
     <div class="install-note">
       <strong>¿Por qué ocurre esto?</strong> SmartScreen construye reputación por número de descargas — las apps nuevas siempre lo muestran, independientemente de si son seguras o no. A medida que más usuarios descarguen WorldForge, el aviso desaparecerá automáticamente.
     </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="container">
+    <div class="eyebrow">Empieza hoy</div>
+    <h2>Tu historia tiene un<br><em>mundo entero</em> esperando.</h2>
+    <p>Descarga WorldForge gratis y empieza a construir el universo de tu novela desde el primer día.</p>
+    <a href="https://github.com/worldforgesupport/worldforge/releases/download/v1.0.0/WorldForgeSetup-1.0.0.exe" class="btn-primary">
+      ⬇ Descargar para Windows — gratis
+    </a>
+    <div class="cta-footnote">Windows 10 / 11 · Sin cuenta · Sin tarjeta de crédito</div>
   </div>
 </section>
 
@@ -535,15 +861,21 @@ footer{background:var(--sidebar);padding:32px 0}
 </footer>
 
 <script>
-// Cargar PNG real cuando esté disponible (GitHub Pages); en Artifact queda el SVG
 (function() {
   var test = new Image();
   test.onload = function() {
-    document.querySelectorAll('.logo-svg').forEach(function(el){ el.style.display = 'none'; });
-    document.querySelectorAll('.logo-png').forEach(function(el){ el.style.display = 'block'; });
+    document.querySelectorAll('.logo-svg').forEach(function(el){ el.style.display='none'; });
+    document.querySelectorAll('.logo-png').forEach(function(el){ el.style.display='block'; });
   };
   test.src = 'assets/logo.png';
 })();
+
+function toggleFaq(btn) {
+  var item = btn.parentElement;
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(el){ el.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
 
 function setPremiumPrice(btn, price, note) {
   document.querySelectorAll('.price-tab').forEach(function(t){ t.classList.remove('active'); });
