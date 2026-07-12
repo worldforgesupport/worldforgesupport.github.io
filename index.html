@@ -325,7 +325,7 @@ footer{background:var(--sidebar);padding:32px 0}
         <span>Gratis para siempre</span>
         <span>Windows 10 / 11</span>
         <span>100% offline</span>
-        <span>v1.0.0</span>
+        <span>v1.1.0</span>
       </div>
     </div>
     <!-- Captura principal de la app -->
@@ -479,8 +479,27 @@ footer{background:var(--sidebar);padding:32px 0}
         </div>
       </div>
 
-      <!-- 5: Locaciones y Wiki -->
+      <!-- 5: Personajes -->
       <div class="showcase-item">
+        <div class="showcase-text">
+          <div class="kicker">Personajes</div>
+          <h3>Conoce a cada personaje hasta el último detalle</h3>
+          <p>Las fichas de personaje reúnen todo lo que necesitas saber: descripción física, personalidad, historia, relaciones, arco narrativo y notas privadas del autor. Foto de perfil, sprite para el mapa y seguimiento del estado (vivo, muerto, desaparecido) incluidos.</p>
+          <ul class="showcase-list">
+            <li>Ficha completa: física, personalidad, historia y motivaciones</li>
+            <li>Foto de perfil y sprite personalizable para el mapa</li>
+            <li>Arco narrativo con estado: Activo, Muerto, Desaparecido…</li>
+            <li>Referencias automáticas: mencionar el nombre en el manuscrito activa la ficha</li>
+            <li>Notas privadas del autor excluidas de exportaciones</li>
+          </ul>
+        </div>
+        <div class="showcase-img">
+          <img src="assets/wf-personajes.png" alt="Ficha de personaje en WorldForge">
+        </div>
+      </div>
+
+      <!-- 6: Locaciones y Wiki -->
+      <div class="showcase-item flip">
         <div class="showcase-text">
           <div class="kicker">Locaciones y Wiki</div>
           <h3>Cada rincón del mundo, documentado y conectado</h3>
@@ -494,39 +513,12 @@ footer{background:var(--sidebar);padding:32px 0}
           </ul>
         </div>
         <div class="showcase-img">
-          <div class="mockup">
-            <div class="m-bar">
-              <div class="m-dot" style="background:#ff5f57"></div>
-              <div class="m-dot" style="background:#febc2e"></div>
-              <div class="m-dot" style="background:#28c840"></div>
-              <span class="m-label">Locaciones · Wiki</span>
-            </div>
-            <div class="m-body m-2col">
-              <div class="m-card">
-                <div style="height:40px;background:var(--bg);border-radius:5px;margin-bottom:8px;display:flex;align-items:center;justify-content:center;color:var(--muted)">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                </div>
-                <div class="m-card-title">📍 Templo del Oráculo</div>
-                <div class="m-row"><span class="m-key">Tipo</span><span class="m-val">Lugar sagrado</span></div>
-                <div class="m-row"><span class="m-key">Escenas</span><span class="m-val">3 vinculadas</span></div>
-                <div class="m-row"><span class="m-key">Personajes</span><div><span class="m-pill">Sael</span><span class="m-pill">+2</span></div></div>
-              </div>
-              <div class="m-card">
-                <div class="m-card-title">📖 Los Oráculos</div>
-                <div style="margin-bottom:7px"><span class="m-pill">Religión</span><span class="m-pill">Magia</span></div>
-                <div class="m-text">Orden antigua que recibe visiones del futuro. Sus miembros renuncian a la memoria propia para canalizar la colectiva.</div>
-                <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">
-                  <div style="font-size:.6rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Secciones</div>
-                  <div class="m-text" style="color:var(--muted)">Origen · Rituales · Miembros · Reliquias</div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <img src="assets/wf-locaciones.png" alt="Fichas de locación y Wiki en WorldForge">
         </div>
       </div>
 
-      <!-- 6: Relaciones y Árbol genealógico -->
-      <div class="showcase-item flip">
+      <!-- 7: Relaciones y Árbol genealógico -->
+      <div class="showcase-item">
         <div class="showcase-text">
           <div class="kicker">Relaciones y árbol genealógico</div>
           <h3>Visualiza cómo cada personaje se conecta con el resto</h3>
@@ -540,33 +532,12 @@ footer{background:var(--sidebar);padding:32px 0}
           </ul>
         </div>
         <div class="showcase-img">
-          <div class="mockup">
-            <div class="m-bar">
-              <div class="m-dot" style="background:#ff5f57"></div>
-              <div class="m-dot" style="background:#febc2e"></div>
-              <div class="m-dot" style="background:#28c840"></div>
-              <span class="m-label">Relaciones · Árbol</span>
-            </div>
-            <div class="m-body">
-              <div class="m-section-label">Gráfico de relaciones — Sael Mirren</div>
-              <div class="m-node-row"><div class="m-node hi">Sael Mirren</div><div class="m-edge-line"></div><span class="m-edge-text">⚔ Antagonista</span><div class="m-edge-line"></div><div class="m-node">Kira Voss</div></div>
-              <div class="m-node-row"><div class="m-node hi">Sael Mirren</div><div class="m-edge-line"></div><span class="m-edge-text">🌟 Mentor</span><div class="m-edge-line"></div><div class="m-node">Eiryn Sol</div></div>
-              <div class="m-node-row"><div class="m-node hi">Sael Mirren</div><div class="m-edge-line"></div><span class="m-edge-text">👥 Hermano</span><div class="m-edge-line"></div><div class="m-node">Dael Mirren</div></div>
-              <div class="m-node-row"><div class="m-node hi">Sael Mirren</div><div class="m-edge-line"></div><span class="m-edge-text">🤝 Aliado</span><div class="m-edge-line"></div><div class="m-node">La Anciana</div></div>
-              <div class="m-section-label">Árbol genealógico — Familia Mirren</div>
-              <div class="m-node-row" style="padding-left:36px"><div class="m-node">Aldric Mirren</div><span style="font-size:.6rem;color:var(--muted);padding-left:6px">Padre</span></div>
-              <div style="display:flex;padding-left:44px;gap:8px;margin:-3px 0 3px 0">
-                <div style="width:1px;height:12px;background:var(--border);margin-right:54px"></div>
-                <div style="width:1px;height:12px;background:var(--border)"></div>
-              </div>
-              <div class="m-node-row" style="gap:8px"><div class="m-node hi">Sael Mirren</div><div class="m-node">Dael Mirren</div></div>
-            </div>
-          </div>
+          <img src="assets/wf-relaciones.png" alt="Gráfico de relaciones y árbol genealógico en WorldForge">
         </div>
       </div>
 
-      <!-- 7: Worldbuilding configurable -->
-      <div class="showcase-item">
+      <!-- 8: Worldbuilding configurable -->
+      <div class="showcase-item flip">
         <div class="showcase-text">
           <div class="kicker">Worldbuilding configurable</div>
           <h3>Ajusta las reglas del mundo a tu género y estilo</h3>
@@ -580,45 +551,12 @@ footer{background:var(--sidebar);padding:32px 0}
           </ul>
         </div>
         <div class="showcase-img">
-          <div class="mockup">
-            <div class="m-bar">
-              <div class="m-dot" style="background:#ff5f57"></div>
-              <div class="m-dot" style="background:#febc2e"></div>
-              <div class="m-dot" style="background:#28c840"></div>
-              <span class="m-label">Configuración del mundo</span>
-            </div>
-            <div class="m-body">
-              <div class="m-cfg-row">
-                <span class="m-cfg-key">Tipos personaje</span>
-                <div class="m-cfg-vals"><span class="m-pill">Protagonista</span><span class="m-pill">Antagonista</span><span class="m-pill">Guardián</span><span class="m-pill">Secundario</span><span class="m-pill">+ Nuevo…</span></div>
-              </div>
-              <div class="m-cfg-row">
-                <span class="m-cfg-key">Tipos relación</span>
-                <div class="m-cfg-vals"><span class="m-pill">Rival</span><span class="m-pill">Aliado</span><span class="m-pill">Mentor</span><span class="m-pill">Familia</span><span class="m-pill">Romántico</span><span class="m-pill">+ Nuevo…</span></div>
-              </div>
-              <div class="m-cfg-row">
-                <span class="m-cfg-key">Calendario</span>
-                <div class="m-cfg-vals"><span class="m-pill">12 meses</span><span class="m-pill">Año 1420 AE</span><span class="m-pill">Era de los Dioses</span></div>
-              </div>
-              <div class="m-cfg-row">
-                <span class="m-cfg-key">Tipos escena</span>
-                <div class="m-cfg-vals"><span class="m-pill">Acción</span><span class="m-pill">Diálogo</span><span class="m-pill">Revelación</span><span class="m-pill">Flashback</span><span class="m-pill">+ Nuevo…</span></div>
-              </div>
-              <div class="m-cfg-row">
-                <span class="m-cfg-key">Grupos</span>
-                <div class="m-cfg-vals">
-                  <span class="m-pill" style="background:color-mix(in srgb,#ef4444 14%,transparent);color:#ef4444">Facción Norte</span>
-                  <span class="m-pill" style="background:color-mix(in srgb,#f59e0b 14%,transparent);color:#d97706">Orden Oráculo</span>
-                  <span class="m-pill" style="background:color-mix(in srgb,#10b981 14%,transparent);color:#059669">Rebeldes</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <img src="assets/wf-config.png" alt="Configuración de worldbuilding en WorldForge">
         </div>
       </div>
 
-      <!-- 8: Editor conectado y Buscador -->
-      <div class="showcase-item flip">
+      <!-- 9: Editor conectado y Buscador -->
+      <div class="showcase-item">
         <div class="showcase-text">
           <div class="kicker">Todo conectado</div>
           <h3>Escribe y tu mundo aparece cuando lo necesitas</h3>
@@ -632,39 +570,7 @@ footer{background:var(--sidebar);padding:32px 0}
           </ul>
         </div>
         <div class="showcase-img">
-          <div class="mockup">
-            <div class="m-bar">
-              <div class="m-dot" style="background:#ff5f57"></div>
-              <div class="m-dot" style="background:#febc2e"></div>
-              <div class="m-dot" style="background:#28c840"></div>
-              <span class="m-label">Editor · Buscador general</span>
-            </div>
-            <div class="m-body">
-              <div class="m-card" style="margin-bottom:12px">
-                <div style="font-size:.63rem;color:var(--muted);font-weight:600;margin-bottom:6px">Capítulo I — El archivo maldito</div>
-                <div class="m-text"><span class="m-ref">Sael Mirren</span> cruzó las puertas del <span class="m-ref">Templo del Oráculo</span> al amanecer. La piedra olía a incienso y a algo más antiguo — a los años que <span class="m-ref">La Anciana</span> llevaba esperando su llegada.</div>
-              </div>
-              <div class="m-search">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                <span class="m-search-q">Templo del Oráculo</span>
-              </div>
-              <div class="m-result">
-                <div class="m-result-type">📍 Locación</div>
-                <div class="m-result-title">Templo del Oráculo</div>
-                <div class="m-result-snip">Lugar sagrado · 3 escenas · Sael, La Anciana, Eiryn</div>
-              </div>
-              <div class="m-result">
-                <div class="m-result-type">🎭 Escena</div>
-                <div class="m-result-title">La llegada al templo</div>
-                <div class="m-result-snip">Capítulo I · POV: Sael Mirren · Subtrama: El oráculo</div>
-              </div>
-              <div class="m-result">
-                <div class="m-result-type">📖 Wiki</div>
-                <div class="m-result-title">Los Oráculos</div>
-                <div class="m-result-snip">"…orden antigua que recibe visiones del futuro…"</div>
-              </div>
-            </div>
-          </div>
+          <img src="assets/wf-buscador.png" alt="Buscador general de WorldForge">
         </div>
       </div>
 
@@ -1088,6 +994,44 @@ footer{background:var(--sidebar);padding:32px 0}
   <div class="container">
     <div class="section-label">Versiones</div>
     <h2 class="section-title">Historial de cambios</h2>
+
+    <div class="changelog-header">
+      <span class="changelog-v">v1.1.0</span>
+      <span class="changelog-date">12 de julio de 2026</span>
+      <span class="changelog-tag">Actualización</span>
+    </div>
+    <div class="changelog-groups" style="margin-bottom:52px">
+      <div class="changelog-group">
+        <h4>Editor y manuscrito</h4>
+        <ul>
+          <li>Alineación de texto en todos los editores (izq / centro / der / justificado)</li>
+          <li>Smart paste: pega desde Word o web preservando negrita e itálica, sin colores externos</li>
+          <li>Drag-to-reorder de capítulos con asa visible</li>
+          <li>Auto-scroll al capítulo recién creado</li>
+          <li>Fix: selección de texto no se pierde al enlazar a una escena</li>
+          <li>Icono de paleta en el selector de color de texto</li>
+        </ul>
+      </div>
+      <div class="changelog-group">
+        <h4>Mapa y árbol genealógico</h4>
+        <ul>
+          <li>"Volver al buscador" funciona correctamente en mapa y árbol</li>
+          <li>X cierra todo cuando el modal se abre desde el buscador</li>
+          <li>El árbol no muestra "Eliminar" en modo vista desde buscador</li>
+          <li>Nombre y tipo de mapa en la misma fila</li>
+          <li>Mapa y árbol se cierran al cambiar de sección</li>
+        </ul>
+      </div>
+      <div class="changelog-group">
+        <h4>Proyecto y sprites</h4>
+        <ul>
+          <li>Selector de formato literario y tipo de serie en información del proyecto</li>
+          <li>Sprites reorganizados por época: Medieval, Actual, Futurista, Victoriana, Los 80</li>
+          <li>Nuevos personajes, ciudades y casas para cada época</li>
+        </ul>
+      </div>
+    </div>
+
     <div class="changelog-header">
       <span class="changelog-v">v1.0.0</span>
       <span class="changelog-date">7 de julio de 2026</span>
