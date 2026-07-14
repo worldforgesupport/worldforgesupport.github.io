@@ -200,6 +200,23 @@ nav{background:var(--sidebar);border-bottom:1px solid rgba(255,255,255,.06);padd
 .plan-features li.dim{color:var(--muted)}
 .plan-features li.dim::before{color:var(--border)}
 .price-tabs{display:flex;gap:6px;margin-bottom:14px}
+/* ── Tabla de comparación ── */
+.compare-wrap{margin-top:52px;overflow-x:auto}
+.compare-label{font-size:.68rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:22px}
+.compare-table{width:100%;border-collapse:collapse;font-size:.835rem}
+.compare-table thead th{padding:11px 18px;font-size:.75rem;font-weight:600;letter-spacing:.04em;border-bottom:2px solid var(--border);color:var(--text2)}
+.compare-table thead th:first-child{text-align:left;width:55%}
+.compare-table thead th:not(:first-child){text-align:center;min-width:110px}
+.compare-table thead th.col-prem{color:var(--accent);background:color-mix(in srgb,var(--accent) 6%,transparent)}
+.compare-table .grp-row td{padding:12px 18px 5px;font-size:.66rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);background:var(--bg);border-top:1px solid var(--border)}
+.compare-table tbody tr:not(.grp-row) td{padding:10px 18px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:middle;line-height:1.4}
+.compare-table tbody tr:not(.grp-row) td:first-child{color:var(--text)}
+.compare-table tbody tr:not(.grp-row) td:not(:first-child){text-align:center}
+.compare-table td.col-prem{background:color-mix(in srgb,var(--accent) 4%,transparent)}
+.cval-y{color:var(--accent);font-size:1.05rem;font-weight:700;line-height:1}
+.cval-n{color:var(--border);font-size:1.1rem;line-height:1}
+.cval-lim{color:var(--text2);font-size:.8rem}
+.cval-inf{color:var(--accent);font-size:.8rem;font-weight:600}
 .price-tab{font-size:.73rem;font-weight:600;padding:5px 13px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all .15s}
 .price-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 .price-save{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#16a34a;background:#dcfce7;border-radius:20px;padding:2px 8px;margin-left:4px}
@@ -859,6 +876,43 @@ footer{background:var(--sidebar);padding:32px 0}
         </div>
       </div>
 
+    </div>
+
+    <!-- Tabla comparativa -->
+    <div class="compare-wrap">
+      <div class="compare-label">Comparación detallada</div>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Gratis</th>
+            <th class="col-prem">Premium</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="grp-row"><td colspan="3">Funciones</td></tr>
+          <tr><td>Editor de manuscrito completo</td><td><span class="cval-y">✓</span></td><td class="col-prem"><span class="cval-y">✓</span></td></tr>
+          <tr><td>Personajes, locaciones, grupos y wiki</td><td><span class="cval-y">✓</span></td><td class="col-prem"><span class="cval-y">✓</span></td></tr>
+          <tr><td>Mapa interactivo y árbol genealógico</td><td><span class="cval-y">✓</span></td><td class="col-prem"><span class="cval-y">✓</span></td></tr>
+          <tr><td>Corrector ortográfico offline (ES / EN)</td><td><span class="cval-y">✓</span></td><td class="col-prem"><span class="cval-y">✓</span></td></tr>
+          <tr><td>Asistente de IA (con tu propia clave API)</td><td><span class="cval-y">✓</span></td><td class="col-prem"><span class="cval-y">✓</span></td></tr>
+          <tr><td>Backup automático diario</td><td><span class="cval-y">✓</span></td><td class="col-prem"><span class="cval-y">✓</span></td></tr>
+          <tr><td>Exportación a DOCX y TXT</td><td><span class="cval-y">✓</span></td><td class="col-prem"><span class="cval-y">✓</span></td></tr>
+          <tr><td>Exportación a EPUB</td><td><span class="cval-n">—</span></td><td class="col-prem"><span class="cval-y">✓</span></td></tr>
+          <tr><td>Soporte prioritario por email</td><td><span class="cval-n">—</span></td><td class="col-prem"><span class="cval-y">✓</span></td></tr>
+
+          <tr class="grp-row"><td colspan="3">Límites de contenido</td></tr>
+          <tr><td>Proyectos</td><td><span class="cval-lim">hasta 3</span></td><td class="col-prem"><span class="cval-inf">Ilimitados</span></td></tr>
+          <tr><td>Personajes</td><td><span class="cval-lim">hasta 30</span></td><td class="col-prem"><span class="cval-inf">Ilimitados</span></td></tr>
+          <tr><td>Capítulos</td><td><span class="cval-lim">hasta 15</span></td><td class="col-prem"><span class="cval-inf">Ilimitados</span></td></tr>
+          <tr><td>Locaciones</td><td><span class="cval-lim">hasta 20</span></td><td class="col-prem"><span class="cval-inf">Ilimitadas</span></td></tr>
+          <tr><td>Escenas</td><td><span class="cval-lim">hasta 40</span></td><td class="col-prem"><span class="cval-inf">Ilimitadas</span></td></tr>
+          <tr><td>Fichas wiki</td><td><span class="cval-lim">hasta 30</span></td><td class="col-prem"><span class="cval-inf">Ilimitadas</span></td></tr>
+          <tr><td>Grupos</td><td><span class="cval-lim">hasta 10</span></td><td class="col-prem"><span class="cval-inf">Ilimitados</span></td></tr>
+          <tr><td>Eventos en línea de tiempo</td><td><span class="cval-lim">hasta 30</span></td><td class="col-prem"><span class="cval-inf">Ilimitados</span></td></tr>
+          <tr><td>Mapas</td><td><span class="cval-lim">hasta 1</span></td><td class="col-prem"><span class="cval-inf">Ilimitados</span></td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
