@@ -1167,38 +1167,43 @@ footer{background:var(--sidebar);padding:32px 0}
   banner.textContent = 'Cargando pantalla de pago…';
   document.body.prepend(banner);
 
-  if (sandbox) Paddle.Environment.set('sandbox');
-
   function showError(msg) {
     banner.style.background = '#c62828';
     banner.textContent = 'Error al abrir el checkout: ' + msg;
   }
 
-  Paddle.Initialize({
-    token: 'live_4ca17cc193f25d10f7c52b7209c',
-    eventCallback: function(event) {
-      if (event.name === 'checkout.completed') {
-        banner.style.background = '#2e7d32';
-        banner.innerHTML = '¡Pago completado! &nbsp;·&nbsp; Abre WorldForge &rarr; Configuración &rarr; Licencia &rarr; ingresa tu email y presiona <strong>Verificar</strong>.';
-      }
-      if (event.name === 'checkout.error') {
-        showError(event.data?.code || JSON.stringify(event.data));
-      }
-      if (event.name === 'checkout.closed' && banner.style.background !== 'rgb(46, 125, 50)') {
-        banner.style.background = '#555';
-        banner.textContent = 'Pago cancelado. Puedes cerrar esta pestaña.';
-      }
+  /* Paddle.js define su global de forma asíncrona — esperamos hasta 5s */
+  var attempts = 0;
+  function init() {
+    if (typeof Paddle === 'undefined') {
+      if (++attempts > 50) { showError('Paddle.js no cargó (sin conexión?)'); return; }
+      setTimeout(init, 100);
+      return;
     }
-  });
-
-  /* Pequeño delay para que Paddle.js termine de inicializarse */
-  setTimeout(function() {
+    if (sandbox) Paddle.Environment.set('sandbox');
+    Paddle.Initialize({
+      token: 'live_4ca17cc193f25d10f7c52b7209c',
+      eventCallback: function(event) {
+        if (event.name === 'checkout.completed') {
+          banner.style.background = '#2e7d32';
+          banner.innerHTML = '¡Pago completado! &nbsp;·&nbsp; Abre WorldForge &rarr; Configuración &rarr; Licencia &rarr; ingresa tu email y presiona <strong>Verificar</strong>.';
+        }
+        if (event.name === 'checkout.error') {
+          showError(event.data?.code || JSON.stringify(event.data));
+        }
+        if (event.name === 'checkout.closed' && banner.style.background !== 'rgb(46, 125, 50)') {
+          banner.style.background = '#555';
+          banner.textContent = 'Pago cancelado. Puedes cerrar esta pestaña.';
+        }
+      }
+    });
     try {
       Paddle.Checkout.open({ transactionId: txnId });
     } catch(e) {
       showError(e.message);
     }
-  }, 300);
+  }
+  init();
 })();
 </script>
 
