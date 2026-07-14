@@ -1146,6 +1146,47 @@ footer{background:var(--sidebar);padding:32px 0}
   </div>
 </footer>
 
+<!-- Paddle checkout (se activa solo cuando la URL incluye ?_ptxn=...) -->
+<script src="https://cdn.paddle.com/paddle/v3/paddle.js"></script>
+<script>
+(function() {
+  var params  = new URLSearchParams(window.location.search);
+  var txnId   = params.get('_ptxn');
+  var sandbox = params.get('sandbox') === 'true';
+  if (!txnId) return;
+
+  /* Banner de estado */
+  var banner = document.createElement('div');
+  banner.id = 'paddle-banner';
+  banner.style.cssText = [
+    'position:fixed;top:0;left:0;right:0;z-index:99999',
+    'background:#5c6bc0;color:#fff;text-align:center',
+    'padding:15px 20px;font-size:.9rem;font-weight:600',
+    'box-shadow:0 2px 12px rgba(0,0,0,.25)'
+  ].join(';');
+  banner.textContent = 'Cargando pantalla de pago…';
+  document.body.prepend(banner);
+
+  if (sandbox) Paddle.Environment.set('sandbox');
+
+  Paddle.Initialize({
+    token: 'live_4ca17cc193f25d10f7c52b7209c',
+    eventCallback: function(event) {
+      if (event.name === 'checkout.completed') {
+        banner.style.background = '#2e7d32';
+        banner.innerHTML = '¡Pago completado! &nbsp;·&nbsp; Abre WorldForge &rarr; Configuración &rarr; Licencia &rarr; ingresa tu email y presiona <strong>Verificar</strong>.';
+      }
+      if (event.name === 'checkout.closed' && banner.style.background !== 'rgb(46, 125, 50)') {
+        banner.style.background = '#555';
+        banner.textContent = 'Pago cancelado. Puedes cerrar esta pestaña.';
+      }
+    }
+  });
+
+  Paddle.Checkout.open({ transactionId: txnId });
+})();
+</script>
+
 <script>
 (function() {
   var test = new Image();
